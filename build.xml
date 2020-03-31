@@ -1,0 +1,43 @@
+<project name="xdbc" default="compile">
+	<property name = "base.dir" value = "."/>
+	<property name = "src.dir" value = "${base.dir}/src"/>
+	<property name = "build.dir" value = "${base.dir}/bin"/>
+	<property name = "package.dir" value = "${base.dir}/package"/>
+	<presetdef name="javac">
+		<javac includeantruntime="false" />
+	</presetdef>
+	<path id = "master-classpath">
+<!--
+		<fileset dir = "${base.dir}/lib">
+			<include name = "*.jar"/>
+		</fileset>
+-->
+		<pathelement path = "${build.dir}"/>
+		<pathelement path = "/opt/java/lib/jdbc/derby.jar" />
+		<pathelement path = "/opt/java/lib/jdbc/h2-1.4.199.jar" />
+		<pathelement path = "/opt/java/lib/jdbc/hsqldb.jar" />
+		<pathelement path = "/opt/java/lib/jdbc/ojdbc8.jar" />
+		<pathelement path = "/opt/java/lib/jdbc/postgresql-42.0.0.jar" />
+		<pathelement path = "/opt/java/lib/jdbc/sqlite-jdbc-3.30.1.jar" />
+		<pathelement path = "/opt/java/lib/jdbc/mariadb-java-client-2.4.4.jar" />
+	</path>
+	<target name="depends">
+		<mkdir dir="${build.dir}" />
+	</target>
+	<target name="clean">
+		<delete dir="${build.dir}" />
+	</target>
+	<target name="compile" depends="depends">
+		<javac destdir = "${build.dir}" deprecation="true" debug="true" debuglevel="lines,vars,source" includeAntRuntime="false" optimize="true" nowarn="off" target="1.7" source="1.7">
+			<src path = "${src.dir}"/>
+			<classpath refid = "master-classpath"/>
+		</javac>
+	</target>
+	<target name="package" depends="compile">
+		<jar destfile="${package.dir}/xdbc.0.2.0.0.jar">
+			<fileset dir="${build.dir}" includes="kr/**/*.class"/>
+			<fileset dir="${base.dir}" includes="README.md,LICENSE"/>
+			<fileset dir="${src.dir}" includes="kr/**/*.java, kr/**/*.xsl, kr/**/*.xml, kr/**/*.properties"/>
+		</jar>
+	</target>
+</project>
