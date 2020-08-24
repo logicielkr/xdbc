@@ -27,7 +27,7 @@ jdbc의 몇 가지 확장 기능을 제공한다.
 ### 1.4. 배포하는 곳
 
 * 소스코드 : <https://github.com/logicielkr/xdbc>
-* 웹사이트 : <https://xdbc.kr>
+* 웹사이트 : <https://graha.kr>
 
 ## 2. 사용방법
 
