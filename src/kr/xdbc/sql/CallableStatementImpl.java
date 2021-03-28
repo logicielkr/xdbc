@@ -68,22 +68,22 @@ public class CallableStatementImpl implements CallableStatement {
 		this.con = con;
 		this.cstmts = cstmts;
 	}
-	public void registerOutParameter(int parameterIndex, int sqlType) throws SQLException {
+	public void registerOutParameter(int pIndex, int sqlType) throws SQLException {
 		if(this.cstmts != null) {
 			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].registerOutParameter(parameterIndex, sqlType);
+				cstmts[i].registerOutParameter(pIndex, sqlType);
 			}
 		} else {
-			this.cstmt.registerOutParameter(parameterIndex, sqlType);
+			this.cstmt.registerOutParameter(pIndex, sqlType);
 		}
 	}
-	public void registerOutParameter(int parameterIndex, int sqlType, int scale) throws SQLException {
+	public void registerOutParameter(int pIndex, int sqlType, int scale) throws SQLException {
 		if(this.cstmts != null) {
 			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].registerOutParameter(parameterIndex, sqlType, scale);
+				cstmts[i].registerOutParameter(pIndex, sqlType, scale);
 			}
 		} else {
-			this.cstmt.registerOutParameter(parameterIndex, sqlType, scale);
+			this.cstmt.registerOutParameter(pIndex, sqlType, scale);
 		}
 	}
 	public boolean wasNull() throws SQLException {
@@ -93,112 +93,112 @@ public class CallableStatementImpl implements CallableStatement {
 			return this.cstmt.wasNull();
 		}
 	}
-	public String getString(int parameterIndex) throws SQLException {
+	public String getString(int pIndex) throws SQLException {
 		if(this.cstmts != null) {
-			return this.cstmts[0].getString(parameterIndex);
+			return this.cstmts[0].getString(pIndex);
 		} else {
-			return this.cstmt.getString(parameterIndex);
+			return this.cstmt.getString(pIndex);
 		}
 	}
-	public boolean getBoolean(int parameterIndex) throws SQLException {
+	public boolean getBoolean(int pIndex) throws SQLException {
 		if(this.cstmts != null) {
-			return this.cstmts[0].getBoolean(parameterIndex);
+			return this.cstmts[0].getBoolean(pIndex);
 		} else {
-			return this.cstmt.getBoolean(parameterIndex);
+			return this.cstmt.getBoolean(pIndex);
 		}
 	}
-	public byte getByte(int parameterIndex) throws SQLException {
+	public byte getByte(int pIndex) throws SQLException {
 		if(this.cstmts != null) {
-			return this.cstmts[0].getByte(parameterIndex);
+			return this.cstmts[0].getByte(pIndex);
 		} else {
-			return this.cstmt.getByte(parameterIndex);
+			return this.cstmt.getByte(pIndex);
 		}
 	}
-	public short getShort(int parameterIndex) throws SQLException {
+	public short getShort(int pIndex) throws SQLException {
 		if(this.cstmts != null) {
-			return this.cstmts[0].getShort(parameterIndex);
+			return this.cstmts[0].getShort(pIndex);
 		} else {
-			return this.cstmt.getShort(parameterIndex);
+			return this.cstmt.getShort(pIndex);
 		}
 	}
-	public int getInt(int parameterIndex) throws SQLException {
+	public int getInt(int pIndex) throws SQLException {
 		if(this.cstmts != null) {
-			return this.cstmts[0].getInt(parameterIndex);
+			return this.cstmts[0].getInt(pIndex);
 		} else {
-			return this.cstmt.getInt(parameterIndex);
+			return this.cstmt.getInt(pIndex);
 		}
 	}
-	public long getLong(int parameterIndex) throws SQLException {
+	public long getLong(int pIndex) throws SQLException {
 		if(this.cstmts != null) {
-			return this.cstmts[0].getLong(parameterIndex);
+			return this.cstmts[0].getLong(pIndex);
 		} else {
-			return this.cstmt.getLong(parameterIndex);
+			return this.cstmt.getLong(pIndex);
 		}
 	}
-	public float getFloat(int parameterIndex) throws SQLException {
+	public float getFloat(int pIndex) throws SQLException {
 		if(this.cstmts != null) {
-			return this.cstmts[0].getFloat(parameterIndex);
+			return this.cstmts[0].getFloat(pIndex);
 		} else {
-			return this.cstmt.getFloat(parameterIndex);
+			return this.cstmt.getFloat(pIndex);
 		}
 	}
-	public double getDouble(int parameterIndex) throws SQLException {
+	public double getDouble(int pIndex) throws SQLException {
 		if(this.cstmts != null) {
-			return this.cstmts[0].getDouble(parameterIndex);
+			return this.cstmts[0].getDouble(pIndex);
 		} else {
-			return this.cstmt.getDouble(parameterIndex);
+			return this.cstmt.getDouble(pIndex);
 		}
 	}
 /**
- * @deprecated      
+ * @deprecated
  */
-	public BigDecimal getBigDecimal(int parameterIndex, int scale) throws SQLException {
+	public BigDecimal getBigDecimal(int pIndex, int scale) throws SQLException {
 		if(this.cstmts != null) {
-			return this.cstmts[0].getBigDecimal(parameterIndex, scale);
+			return this.cstmts[0].getBigDecimal(pIndex, scale);
 		} else {
-			return this.cstmt.getBigDecimal(parameterIndex, scale);
+			return this.cstmt.getBigDecimal(pIndex, scale);
 		}
 	}
-	public byte[] getBytes(int parameterIndex) throws SQLException {
+	public byte[] getBytes(int pIndex) throws SQLException {
 		if(this.cstmts != null) {
-			return this.cstmts[0].getBytes(parameterIndex);
+			return this.cstmts[0].getBytes(pIndex);
 		} else {
-			return this.cstmt.getBytes(parameterIndex);
+			return this.cstmt.getBytes(pIndex);
 		}
 	}
-	public Date getDate(int parameterIndex) throws SQLException {
+	public Date getDate(int pIndex) throws SQLException {
 		if(this.cstmts != null) {
-			return this.cstmts[0].getDate(parameterIndex);
+			return this.cstmts[0].getDate(pIndex);
 		} else {
-			return this.cstmt.getDate(parameterIndex);
+			return this.cstmt.getDate(pIndex);
 		}
 	}
-	public Time getTime(int parameterIndex) throws SQLException {
+	public Time getTime(int pIndex) throws SQLException {
 		if(this.cstmts != null) {
-			return this.cstmts[0].getTime(parameterIndex);
+			return this.cstmts[0].getTime(pIndex);
 		} else {
-			return this.cstmt.getTime(parameterIndex);
+			return this.cstmt.getTime(pIndex);
 		}
 	}
-	public Timestamp getTimestamp(int parameterIndex) throws SQLException {
+	public Timestamp getTimestamp(int pIndex) throws SQLException {
 		if(this.cstmts != null) {
-			return this.cstmts[0].getTimestamp(parameterIndex);
+			return this.cstmts[0].getTimestamp(pIndex);
 		} else {
-			return this.cstmt.getTimestamp(parameterIndex);
+			return this.cstmt.getTimestamp(pIndex);
 		}
 	}
-	public Object getObject(int parameterIndex) throws SQLException {
+	public Object getObject(int pIndex) throws SQLException {
 		if(this.cstmts != null) {
-			return this.cstmts[0].getObject(parameterIndex);
+			return this.cstmts[0].getObject(pIndex);
 		} else {
-			return this.cstmt.getObject(parameterIndex);
+			return this.cstmt.getObject(pIndex);
 		}
 	}
-	public BigDecimal getBigDecimal(int parameterIndex) throws SQLException {
+	public BigDecimal getBigDecimal(int pIndex) throws SQLException {
 		if(this.cstmts != null) {
-			return this.cstmts[0].getBigDecimal(parameterIndex);
+			return this.cstmts[0].getBigDecimal(pIndex);
 		} else {
-			return this.cstmt.getBigDecimal(parameterIndex);
+			return this.cstmt.getBigDecimal(pIndex);
 		}
 	}
 	public Object getObject(int i, Map map) throws SQLException {
@@ -236,457 +236,457 @@ public class CallableStatementImpl implements CallableStatement {
 			return this.cstmt.getArray(i);
 		}
 	}
-	public Date getDate(int parameterIndex, Calendar cal) throws SQLException {
+	public Date getDate(int pIndex, Calendar cal) throws SQLException {
 		if(this.cstmts != null) {
-			return this.cstmts[0].getDate(parameterIndex, cal);
+			return this.cstmts[0].getDate(pIndex, cal);
 		} else {
-			return this.cstmt.getDate(parameterIndex, cal);
+			return this.cstmt.getDate(pIndex, cal);
 		}
 
 	}
-	public Time getTime(int parameterIndex, Calendar cal) throws SQLException {
+	public Time getTime(int pIndex, Calendar cal) throws SQLException {
 		if(this.cstmts != null) {
-			return this.cstmts[0].getTime(parameterIndex, cal);
+			return this.cstmts[0].getTime(pIndex, cal);
 		} else {
-			return this.cstmt.getTime(parameterIndex, cal);
+			return this.cstmt.getTime(pIndex, cal);
 		}
 	}
-	public Timestamp getTimestamp(int parameterIndex, Calendar cal) throws SQLException {
+	public Timestamp getTimestamp(int pIndex, Calendar cal) throws SQLException {
 		if(this.cstmts != null) {
-			return this.cstmts[0].getTimestamp(parameterIndex, cal);
+			return this.cstmts[0].getTimestamp(pIndex, cal);
 		} else {
-			return this.cstmt.getTimestamp(parameterIndex, cal);
-		}
-
-	}
-	public void registerOutParameter(int paramIndex, int sqlType, String typeName)throws SQLException {
-		if(this.cstmts != null) {
-			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].registerOutParameter(paramIndex, sqlType, typeName);
-			}
-		} else {
-			this.cstmt.registerOutParameter(paramIndex, sqlType, typeName);
-		}
-	}
-	public void registerOutParameter(String parameterName, int sqlType) throws SQLException {
-		if(this.cstmts != null) {
-			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].registerOutParameter(parameterName, sqlType);
-			}
-		} else {
-			this.cstmt.registerOutParameter(parameterName, sqlType);
-		}
-	}
-	public void registerOutParameter(String parameterName, int sqlType, int scale)throws SQLException {
-		if(this.cstmts != null) {
-			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].registerOutParameter(parameterName, sqlType, scale);
-			}
-		} else {
-			this.cstmt.registerOutParameter(parameterName, sqlType, scale);
-		}
-	}
-	public void registerOutParameter(String parameterName, int sqlType, String typeName) throws SQLException {
-		if(this.cstmts != null) {
-			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].registerOutParameter(parameterName, sqlType, typeName);
-			}
-		} else {
-			this.cstmt.registerOutParameter(parameterName, sqlType, typeName);
-		}
-	}
-	public URL getURL(int parameterIndex) throws SQLException {
-		if(this.cstmts != null) {
-			return this.cstmts[0].getURL(parameterIndex);
-		} else {
-			return this.cstmt.getURL(parameterIndex);
-		}
-	}
-	public void setURL(String parameterIndex, URL x) throws SQLException {
-		if(this.cstmts != null) {
-			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setURL(parameterIndex, x);
-			}
-		} else {
-			this.cstmt.setURL(parameterIndex, x);
-		}
-	}
-	public void setNull(String parameterName, int sqlType) throws SQLException {
-		if(this.cstmts != null) {
-			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setNull(parameterName, sqlType);
-			}
-		} else {
-			this.cstmt.setNull(parameterName, sqlType);
-		}
-	}
-	public void setBoolean(String parameterName, boolean x) throws SQLException {
-		if(this.cstmts != null) {
-			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setBoolean(parameterName, x);
-			}
-		} else {
-			this.cstmt.setBoolean(parameterName, x);
-		}
-	}
-	public void setByte(String parameterName, byte x) throws SQLException {
-		if(this.cstmts != null) {
-			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setByte(parameterName, x);
-			}
-		} else {
-			this.cstmt.setByte(parameterName, x);
-		}
-	}
-	public void setShort(String parameterName, short x) throws SQLException {
-		if(this.cstmts != null) {
-			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setShort(parameterName, x);
-			}
-		} else {
-			this.cstmt.setShort(parameterName, x);
-		}
-	}
-	public void setInt(String parameterName, int x) throws SQLException {
-		if(this.cstmts != null) {
-			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setInt(parameterName, x);
-			}
-		} else {
-			this.cstmt.setInt(parameterName, x);
-		}
-	}
-	public void setLong(String parameterName, long x) throws SQLException {
-		if(this.cstmts != null) {
-			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setLong(parameterName, x);
-			}
-		} else {
-			this.cstmt.setLong(parameterName, x);
-		}
-	}
-	public void setFloat(String parameterName, float x) throws SQLException {
-		if(this.cstmts != null) {
-			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setFloat(parameterName, x);
-			}
-		} else {
-			this.cstmt.setFloat(parameterName, x);
-		}
-	}
-	public void setDouble(String parameterName, double x) throws SQLException {
-		if(this.cstmts != null) {
-			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setDouble(parameterName, x);
-			}
-		} else {
-			this.cstmt.setDouble(parameterName, x);
-		}
-	}
-	public void setBigDecimal(String parameterName, BigDecimal x) throws SQLException {
-		if(this.cstmts != null) {
-			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setBigDecimal(parameterName, x);
-			}
-		} else {
-			this.cstmt.setBigDecimal(parameterName, x);
-		}
-	}
-	public void setString(String parameterName, String x) throws SQLException {
-		if(this.cstmts != null) {
-			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setString(parameterName, x);
-			}
-		} else {
-			this.cstmt.setString(parameterName, x);
-		}
-	}
-	public void setBytes(String parameterName, byte[] x) throws SQLException {
-		if(this.cstmts != null) {
-			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setBytes(parameterName, x);
-			}
-		} else {
-			this.cstmt.setBytes(parameterName, x);
-		}
-	}
-	public void setDate(String parameterName, Date x) throws SQLException {
-		if(this.cstmts != null) {
-			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setDate(parameterName, x);
-			}
-		} else {
-			this.cstmt.setDate(parameterName, x);
-		}
-	}
-	public void setTime(String parameterName, Time x) throws SQLException {
-		if(this.cstmts != null) {
-			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setTime(parameterName, x);
-			}
-		} else {
-			this.cstmt.setTime(parameterName, x);
-		}
-	}
-	public void setTimestamp(String parameterName, Timestamp x) throws SQLException {
-		if(this.cstmts != null) {
-			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setTimestamp(parameterName, x);
-			}
-		} else {
-			this.cstmt.setTimestamp(parameterName, x);
-		}
-	}
-	public void setAsciiStream(String parameterName, InputStream x, int length) throws SQLException {
-		if(this.cstmts != null) {
-			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setAsciiStream(parameterName, x, length);
-			}
-		} else {
-			this.cstmt.setAsciiStream(parameterName, x, length);
-		}
-	}
-	public void setBinaryStream(String parameterName, InputStream x, int length) throws SQLException {
-		if(this.cstmts != null) {
-			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setBinaryStream(parameterName, x, length);
-			}
-		} else {
-			this.cstmt.setBinaryStream(parameterName, x, length);
-		}
-	}
-	public void setObject(String parameterName, Object x, int targetSqlType, int scale) throws SQLException {
-		if(this.cstmts != null) {
-			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setObject(parameterName, x, targetSqlType, scale);
-			}
-		} else {
-			this.cstmt.setObject(parameterName, x, targetSqlType, scale);
-		}
-	}
-	public void setObject(String parameterName, Object x, int targetSqlType) throws SQLException {
-		if(this.cstmts != null) {
-			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setObject(parameterName, x, targetSqlType);
-			}
-		} else {
-			this.cstmt.setObject(parameterName, x, targetSqlType);
-		}
-	}
-	public void setObject(String parameterName, Object x) throws SQLException {
-		if(this.cstmts != null) {
-			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setObject(parameterName, x);
-			}
-		} else {
-			this.cstmt.setObject(parameterName, x);
-		}
-	}
-	public void setCharacterStream(String parameterName, Reader reader, int length) throws SQLException {
-		if(this.cstmts != null) {
-			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setCharacterStream(parameterName, reader, length);
-			}
-		} else {
-			this.cstmt.setCharacterStream(parameterName, reader, length);
-		}
-	}
-	public void setDate(String parameterName, Date x, Calendar cal) throws SQLException {
-		if(this.cstmts != null) {
-			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setDate(parameterName, x, cal);
-			}
-		} else {
-			this.cstmt.setDate(parameterName, x, cal);
-		}
-	}
-	public void setTime(String parameterName, Time x, Calendar cal) throws SQLException {
-		if(this.cstmts != null) {
-			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setTime(parameterName, x, cal);
-			}
-		} else {
-			this.cstmt.setTime(parameterName, x, cal);
-		}
-	}
-	public void setTimestamp(String parameterName, Timestamp x, Calendar cal) throws SQLException {
-		if(this.cstmts != null) {
-			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setTimestamp(parameterName, x, cal);
-			}
-		} else {
-			this.cstmt.setTimestamp(parameterName, x, cal);
-		}
-	}
-	public void setNull(String parameterName, int sqlType, String typeName) throws SQLException {
-		if(this.cstmts != null) {
-			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setNull(parameterName, sqlType, typeName);
-			}
-		} else {
-			this.cstmt.setNull(parameterName, sqlType, typeName);
-		}
-	}
-	public String getString(String parameterName) throws SQLException {
-		if(this.cstmts != null) {
-			return this.cstmts[0].getString(parameterName);
-		} else {
-			return this.cstmt.getString(parameterName);
-		}
-	}
-	public boolean getBoolean(String parameterName) throws SQLException {
-		if(this.cstmts != null) {
-			return this.cstmts[0].getBoolean(parameterName);
-		} else {
-			return this.cstmt.getBoolean(parameterName);
-		}
-	}
-	public byte getByte(String parameterName) throws SQLException {
-		if(this.cstmts != null) {
-			return this.cstmts[0].getByte(parameterName);
-		} else {
-			return this.cstmt.getByte(parameterName);
-		}
-	}
-	public short getShort(String parameterName) throws SQLException {
-		if(this.cstmts != null) {
-			return this.cstmts[0].getShort(parameterName);
-		} else {
-			return this.cstmt.getShort(parameterName);
-		}
-	}
-	public int getInt(String parameterName) throws SQLException {
-		if(this.cstmts != null) {
-			return this.cstmts[0].getInt(parameterName);
-		} else {
-			return this.cstmt.getInt(parameterName);
-		}
-	}
-	public long getLong(String parameterName) throws SQLException {
-		if(this.cstmts != null) {
-			return this.cstmts[0].getLong(parameterName);
-		} else {
-			return this.cstmt.getLong(parameterName);
-		}
-	}
-	public float getFloat(String parameterName) throws SQLException {
-		if(this.cstmts != null) {
-			return this.cstmts[0].getFloat(parameterName);
-		} else {
-			return this.cstmt.getFloat(parameterName);
-		}
-	}
-	public double getDouble(String parameterName) throws SQLException {
-		if(this.cstmts != null) {
-			return this.cstmts[0].getDouble(parameterName);
-		} else {
-			return this.cstmt.getDouble(parameterName);
-		}
-	}
-	public byte[] getBytes(String parameterName) throws SQLException {
-		if(this.cstmts != null) {
-			return this.cstmts[0].getBytes(parameterName);
-		} else {
-			return this.cstmt.getBytes(parameterName);
-		}
-	}
-	public Date getDate(String parameterName) throws SQLException {
-		if(this.cstmts != null) {
-			return this.cstmts[0].getDate(parameterName);
-		} else {
-			return this.cstmt.getDate(parameterName);
-		}
-	}
-	public Time getTime(String parameterName) throws SQLException {
-		if(this.cstmts != null) {
-			return this.cstmts[0].getTime(parameterName);
-		} else {
-			return this.cstmt.getTime(parameterName);
-		}
-	}
-	public Timestamp getTimestamp(String parameterName) throws SQLException {
-		if(this.cstmts != null) {
-			return this.cstmts[0].getTimestamp(parameterName);
-		} else {
-			return this.cstmt.getTimestamp(parameterName);
-		}
-	}
-	public Object getObject(String parameterName) throws SQLException {
-		if(this.cstmts != null) {
-			return this.cstmts[0].getObject(parameterName);
-		} else {
-			return this.cstmt.getObject(parameterName);
-		}
-	}
-	public BigDecimal getBigDecimal(String parameterName) throws SQLException {
-		if(this.cstmts != null) {
-			return this.cstmts[0].getBigDecimal(parameterName);
-		} else {
-			return this.cstmt.getBigDecimal(parameterName);
-		}
-	}
-	public Object getObject(String parameterName, Map map) throws SQLException {
-		if(this.cstmts != null) {
-			return this.cstmts[0].getObject(parameterName, map);
-		} else {
-			return this.cstmt.getObject(parameterName, map);
-		}
-	}
-	public Ref getRef(String parameterName) throws SQLException {
-		if(this.cstmts != null) {
-			return this.cstmts[0].getRef(parameterName);
-		} else {
-			return this.cstmt.getRef(parameterName);
-		}
-	}
-	public Blob getBlob(String parameterName) throws SQLException {
-		if(this.cstmts != null) {
-			return this.cstmts[0].getBlob(parameterName);
-		} else {
-			return this.cstmt.getBlob(parameterName);
+			return this.cstmt.getTimestamp(pIndex, cal);
 		}
 
 	}
-	public Clob getClob(String parameterName) throws SQLException {
+	public void registerOutParameter(int pIndex, int sqlType, String typeName)throws SQLException {
 		if(this.cstmts != null) {
-			return this.cstmts[0].getClob(parameterName);
+			for(int i = 0; i < this.cstmts.length; i++) {
+				cstmts[i].registerOutParameter(pIndex, sqlType, typeName);
+			}
 		} else {
-			return this.cstmt.getClob(parameterName);
+			this.cstmt.registerOutParameter(pIndex, sqlType, typeName);
 		}
 	}
-	public Array getArray(String parameterName) throws SQLException {
+	public void registerOutParameter(String pName, int sqlType) throws SQLException {
 		if(this.cstmts != null) {
-			return this.cstmts[0].getArray(parameterName);
+			for(int i = 0; i < this.cstmts.length; i++) {
+				cstmts[i].registerOutParameter(pName, sqlType);
+			}
 		} else {
-			return this.cstmt.getArray(parameterName);
+			this.cstmt.registerOutParameter(pName, sqlType);
 		}
 	}
-	public Date getDate(String parameterName, Calendar cal) throws SQLException {
+	public void registerOutParameter(String pName, int sqlType, int scale)throws SQLException {
 		if(this.cstmts != null) {
-			return this.cstmts[0].getDate(parameterName, cal);
+			for(int i = 0; i < this.cstmts.length; i++) {
+				cstmts[i].registerOutParameter(pName, sqlType, scale);
+			}
 		} else {
-			return this.cstmt.getDate(parameterName, cal);
+			this.cstmt.registerOutParameter(pName, sqlType, scale);
 		}
 	}
-	public Time getTime(String parameterName, Calendar cal) throws SQLException {
+	public void registerOutParameter(String pName, int sqlType, String typeName) throws SQLException {
 		if(this.cstmts != null) {
-			return this.cstmts[0].getTime(parameterName, cal);
+			for(int i = 0; i < this.cstmts.length; i++) {
+				cstmts[i].registerOutParameter(pName, sqlType, typeName);
+			}
 		} else {
-			return this.cstmt.getTime(parameterName, cal);
+			this.cstmt.registerOutParameter(pName, sqlType, typeName);
 		}
 	}
-	public Timestamp getTimestamp(String parameterName, Calendar cal) throws SQLException {
+	public URL getURL(int pIndex) throws SQLException {
 		if(this.cstmts != null) {
-			return this.cstmts[0].getTimestamp(parameterName, cal);
+			return this.cstmts[0].getURL(pIndex);
 		} else {
-			return this.cstmt.getTimestamp(parameterName, cal);
+			return this.cstmt.getURL(pIndex);
 		}
 	}
-	public java.net.URL getURL(String parameterName) throws SQLException {
+	public void setURL(String pIndex, URL x) throws SQLException {
 		if(this.cstmts != null) {
-			return this.cstmts[0].getURL(parameterName);
+			for(int i = 0; i < this.cstmts.length; i++) {
+				cstmts[i].setURL(pIndex, x);
+			}
 		} else {
-			return this.cstmt.getURL(parameterName);
+			this.cstmt.setURL(pIndex, x);
+		}
+	}
+	public void setNull(String pName, int sqlType) throws SQLException {
+		if(this.cstmts != null) {
+			for(int i = 0; i < this.cstmts.length; i++) {
+				cstmts[i].setNull(pName, sqlType);
+			}
+		} else {
+			this.cstmt.setNull(pName, sqlType);
+		}
+	}
+	public void setBoolean(String pName, boolean x) throws SQLException {
+		if(this.cstmts != null) {
+			for(int i = 0; i < this.cstmts.length; i++) {
+				cstmts[i].setBoolean(pName, x);
+			}
+		} else {
+			this.cstmt.setBoolean(pName, x);
+		}
+	}
+	public void setByte(String pName, byte x) throws SQLException {
+		if(this.cstmts != null) {
+			for(int i = 0; i < this.cstmts.length; i++) {
+				cstmts[i].setByte(pName, x);
+			}
+		} else {
+			this.cstmt.setByte(pName, x);
+		}
+	}
+	public void setShort(String pName, short x) throws SQLException {
+		if(this.cstmts != null) {
+			for(int i = 0; i < this.cstmts.length; i++) {
+				cstmts[i].setShort(pName, x);
+			}
+		} else {
+			this.cstmt.setShort(pName, x);
+		}
+	}
+	public void setInt(String pName, int x) throws SQLException {
+		if(this.cstmts != null) {
+			for(int i = 0; i < this.cstmts.length; i++) {
+				cstmts[i].setInt(pName, x);
+			}
+		} else {
+			this.cstmt.setInt(pName, x);
+		}
+	}
+	public void setLong(String pName, long x) throws SQLException {
+		if(this.cstmts != null) {
+			for(int i = 0; i < this.cstmts.length; i++) {
+				cstmts[i].setLong(pName, x);
+			}
+		} else {
+			this.cstmt.setLong(pName, x);
+		}
+	}
+	public void setFloat(String pName, float x) throws SQLException {
+		if(this.cstmts != null) {
+			for(int i = 0; i < this.cstmts.length; i++) {
+				cstmts[i].setFloat(pName, x);
+			}
+		} else {
+			this.cstmt.setFloat(pName, x);
+		}
+	}
+	public void setDouble(String pName, double x) throws SQLException {
+		if(this.cstmts != null) {
+			for(int i = 0; i < this.cstmts.length; i++) {
+				cstmts[i].setDouble(pName, x);
+			}
+		} else {
+			this.cstmt.setDouble(pName, x);
+		}
+	}
+	public void setBigDecimal(String pName, BigDecimal x) throws SQLException {
+		if(this.cstmts != null) {
+			for(int i = 0; i < this.cstmts.length; i++) {
+				cstmts[i].setBigDecimal(pName, x);
+			}
+		} else {
+			this.cstmt.setBigDecimal(pName, x);
+		}
+	}
+	public void setString(String pName, String x) throws SQLException {
+		if(this.cstmts != null) {
+			for(int i = 0; i < this.cstmts.length; i++) {
+				cstmts[i].setString(pName, x);
+			}
+		} else {
+			this.cstmt.setString(pName, x);
+		}
+	}
+	public void setBytes(String pName, byte[] x) throws SQLException {
+		if(this.cstmts != null) {
+			for(int i = 0; i < this.cstmts.length; i++) {
+				cstmts[i].setBytes(pName, x);
+			}
+		} else {
+			this.cstmt.setBytes(pName, x);
+		}
+	}
+	public void setDate(String pName, Date x) throws SQLException {
+		if(this.cstmts != null) {
+			for(int i = 0; i < this.cstmts.length; i++) {
+				cstmts[i].setDate(pName, x);
+			}
+		} else {
+			this.cstmt.setDate(pName, x);
+		}
+	}
+	public void setTime(String pName, Time x) throws SQLException {
+		if(this.cstmts != null) {
+			for(int i = 0; i < this.cstmts.length; i++) {
+				cstmts[i].setTime(pName, x);
+			}
+		} else {
+			this.cstmt.setTime(pName, x);
+		}
+	}
+	public void setTimestamp(String pName, Timestamp x) throws SQLException {
+		if(this.cstmts != null) {
+			for(int i = 0; i < this.cstmts.length; i++) {
+				cstmts[i].setTimestamp(pName, x);
+			}
+		} else {
+			this.cstmt.setTimestamp(pName, x);
+		}
+	}
+	public void setAsciiStream(String pName, InputStream x, int length) throws SQLException {
+		if(this.cstmts != null) {
+			for(int i = 0; i < this.cstmts.length; i++) {
+				cstmts[i].setAsciiStream(pName, x, length);
+			}
+		} else {
+			this.cstmt.setAsciiStream(pName, x, length);
+		}
+	}
+	public void setBinaryStream(String pName, InputStream x, int length) throws SQLException {
+		if(this.cstmts != null) {
+			for(int i = 0; i < this.cstmts.length; i++) {
+				cstmts[i].setBinaryStream(pName, x, length);
+			}
+		} else {
+			this.cstmt.setBinaryStream(pName, x, length);
+		}
+	}
+	public void setObject(String pName, Object x, int targetSqlType, int scale) throws SQLException {
+		if(this.cstmts != null) {
+			for(int i = 0; i < this.cstmts.length; i++) {
+				cstmts[i].setObject(pName, x, targetSqlType, scale);
+			}
+		} else {
+			this.cstmt.setObject(pName, x, targetSqlType, scale);
+		}
+	}
+	public void setObject(String pName, Object x, int targetSqlType) throws SQLException {
+		if(this.cstmts != null) {
+			for(int i = 0; i < this.cstmts.length; i++) {
+				cstmts[i].setObject(pName, x, targetSqlType);
+			}
+		} else {
+			this.cstmt.setObject(pName, x, targetSqlType);
+		}
+	}
+	public void setObject(String pName, Object x) throws SQLException {
+		if(this.cstmts != null) {
+			for(int i = 0; i < this.cstmts.length; i++) {
+				cstmts[i].setObject(pName, x);
+			}
+		} else {
+			this.cstmt.setObject(pName, x);
+		}
+	}
+	public void setCharacterStream(String pName, Reader reader, int length) throws SQLException {
+		if(this.cstmts != null) {
+			for(int i = 0; i < this.cstmts.length; i++) {
+				cstmts[i].setCharacterStream(pName, reader, length);
+			}
+		} else {
+			this.cstmt.setCharacterStream(pName, reader, length);
+		}
+	}
+	public void setDate(String pName, Date x, Calendar cal) throws SQLException {
+		if(this.cstmts != null) {
+			for(int i = 0; i < this.cstmts.length; i++) {
+				cstmts[i].setDate(pName, x, cal);
+			}
+		} else {
+			this.cstmt.setDate(pName, x, cal);
+		}
+	}
+	public void setTime(String pName, Time x, Calendar cal) throws SQLException {
+		if(this.cstmts != null) {
+			for(int i = 0; i < this.cstmts.length; i++) {
+				cstmts[i].setTime(pName, x, cal);
+			}
+		} else {
+			this.cstmt.setTime(pName, x, cal);
+		}
+	}
+	public void setTimestamp(String pName, Timestamp x, Calendar cal) throws SQLException {
+		if(this.cstmts != null) {
+			for(int i = 0; i < this.cstmts.length; i++) {
+				cstmts[i].setTimestamp(pName, x, cal);
+			}
+		} else {
+			this.cstmt.setTimestamp(pName, x, cal);
+		}
+	}
+	public void setNull(String pName, int sqlType, String typeName) throws SQLException {
+		if(this.cstmts != null) {
+			for(int i = 0; i < this.cstmts.length; i++) {
+				cstmts[i].setNull(pName, sqlType, typeName);
+			}
+		} else {
+			this.cstmt.setNull(pName, sqlType, typeName);
+		}
+	}
+	public String getString(String pName) throws SQLException {
+		if(this.cstmts != null) {
+			return this.cstmts[0].getString(pName);
+		} else {
+			return this.cstmt.getString(pName);
+		}
+	}
+	public boolean getBoolean(String pName) throws SQLException {
+		if(this.cstmts != null) {
+			return this.cstmts[0].getBoolean(pName);
+		} else {
+			return this.cstmt.getBoolean(pName);
+		}
+	}
+	public byte getByte(String pName) throws SQLException {
+		if(this.cstmts != null) {
+			return this.cstmts[0].getByte(pName);
+		} else {
+			return this.cstmt.getByte(pName);
+		}
+	}
+	public short getShort(String pName) throws SQLException {
+		if(this.cstmts != null) {
+			return this.cstmts[0].getShort(pName);
+		} else {
+			return this.cstmt.getShort(pName);
+		}
+	}
+	public int getInt(String pName) throws SQLException {
+		if(this.cstmts != null) {
+			return this.cstmts[0].getInt(pName);
+		} else {
+			return this.cstmt.getInt(pName);
+		}
+	}
+	public long getLong(String pName) throws SQLException {
+		if(this.cstmts != null) {
+			return this.cstmts[0].getLong(pName);
+		} else {
+			return this.cstmt.getLong(pName);
+		}
+	}
+	public float getFloat(String pName) throws SQLException {
+		if(this.cstmts != null) {
+			return this.cstmts[0].getFloat(pName);
+		} else {
+			return this.cstmt.getFloat(pName);
+		}
+	}
+	public double getDouble(String pName) throws SQLException {
+		if(this.cstmts != null) {
+			return this.cstmts[0].getDouble(pName);
+		} else {
+			return this.cstmt.getDouble(pName);
+		}
+	}
+	public byte[] getBytes(String pName) throws SQLException {
+		if(this.cstmts != null) {
+			return this.cstmts[0].getBytes(pName);
+		} else {
+			return this.cstmt.getBytes(pName);
+		}
+	}
+	public Date getDate(String pName) throws SQLException {
+		if(this.cstmts != null) {
+			return this.cstmts[0].getDate(pName);
+		} else {
+			return this.cstmt.getDate(pName);
+		}
+	}
+	public Time getTime(String pName) throws SQLException {
+		if(this.cstmts != null) {
+			return this.cstmts[0].getTime(pName);
+		} else {
+			return this.cstmt.getTime(pName);
+		}
+	}
+	public Timestamp getTimestamp(String pName) throws SQLException {
+		if(this.cstmts != null) {
+			return this.cstmts[0].getTimestamp(pName);
+		} else {
+			return this.cstmt.getTimestamp(pName);
+		}
+	}
+	public Object getObject(String pName) throws SQLException {
+		if(this.cstmts != null) {
+			return this.cstmts[0].getObject(pName);
+		} else {
+			return this.cstmt.getObject(pName);
+		}
+	}
+	public BigDecimal getBigDecimal(String pName) throws SQLException {
+		if(this.cstmts != null) {
+			return this.cstmts[0].getBigDecimal(pName);
+		} else {
+			return this.cstmt.getBigDecimal(pName);
+		}
+	}
+	public Object getObject(String pName, Map map) throws SQLException {
+		if(this.cstmts != null) {
+			return this.cstmts[0].getObject(pName, map);
+		} else {
+			return this.cstmt.getObject(pName, map);
+		}
+	}
+	public Ref getRef(String pName) throws SQLException {
+		if(this.cstmts != null) {
+			return this.cstmts[0].getRef(pName);
+		} else {
+			return this.cstmt.getRef(pName);
+		}
+	}
+	public Blob getBlob(String pName) throws SQLException {
+		if(this.cstmts != null) {
+			return this.cstmts[0].getBlob(pName);
+		} else {
+			return this.cstmt.getBlob(pName);
+		}
+
+	}
+	public Clob getClob(String pName) throws SQLException {
+		if(this.cstmts != null) {
+			return this.cstmts[0].getClob(pName);
+		} else {
+			return this.cstmt.getClob(pName);
+		}
+	}
+	public Array getArray(String pName) throws SQLException {
+		if(this.cstmts != null) {
+			return this.cstmts[0].getArray(pName);
+		} else {
+			return this.cstmt.getArray(pName);
+		}
+	}
+	public Date getDate(String pName, Calendar cal) throws SQLException {
+		if(this.cstmts != null) {
+			return this.cstmts[0].getDate(pName, cal);
+		} else {
+			return this.cstmt.getDate(pName, cal);
+		}
+	}
+	public Time getTime(String pName, Calendar cal) throws SQLException {
+		if(this.cstmts != null) {
+			return this.cstmts[0].getTime(pName, cal);
+		} else {
+			return this.cstmt.getTime(pName, cal);
+		}
+	}
+	public Timestamp getTimestamp(String pName, Calendar cal) throws SQLException {
+		if(this.cstmts != null) {
+			return this.cstmts[0].getTimestamp(pName, cal);
+		} else {
+			return this.cstmt.getTimestamp(pName, cal);
+		}
+	}
+	public java.net.URL getURL(String pName) throws SQLException {
+		if(this.cstmts != null) {
+			return this.cstmts[0].getURL(pName);
+		} else {
+			return this.cstmt.getURL(pName);
 		}
 	}
 	
@@ -762,7 +762,7 @@ public class CallableStatementImpl implements CallableStatement {
 		}
 	}
 
-	public void setArray(int i,Array  x) throws java.sql.SQLException {
+	public void setArray(int i,Array x) throws java.sql.SQLException {
 		if(this.cstmts != null) {
 			for(int y = 0; y < this.cstmts.length; y++) {
 				cstmts[y].setArray(i, x);
@@ -772,32 +772,32 @@ public class CallableStatementImpl implements CallableStatement {
 		}
 	}
 
-	public void setAsciiStream(int parameterIndex,InputStream  x,int length) throws java.sql.SQLException {
+	public void setAsciiStream(int pIndex,InputStream x,int length) throws java.sql.SQLException {
 		if(this.cstmts != null) {
 			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setAsciiStream(parameterIndex, x, length);
+				cstmts[i].setAsciiStream(pIndex, x, length);
 			}
 		} else {
-			this.cstmt.setAsciiStream(parameterIndex, x, length);
+			this.cstmt.setAsciiStream(pIndex, x, length);
 		}
 	}
 
-	public void setBigDecimal(int parameterIndex, BigDecimal x) throws java.sql.SQLException {
+	public void setBigDecimal(int pIndex, BigDecimal x) throws java.sql.SQLException {
 		if(this.cstmts != null) {
 			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setBigDecimal(parameterIndex, x);
+				cstmts[i].setBigDecimal(pIndex, x);
 			}
 		} else {
-			this.cstmt.setBigDecimal(parameterIndex, x);
+			this.cstmt.setBigDecimal(pIndex, x);
 		}
 	}
-	public void setBinaryStream(int parameterIndex, InputStream x, int length) throws java.sql.SQLException {
+	public void setBinaryStream(int pIndex, InputStream x, int length) throws java.sql.SQLException {
 		if(this.cstmts != null) {
 			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setBinaryStream(parameterIndex, x, length);
+				cstmts[i].setBinaryStream(pIndex, x, length);
 			}
 		} else {
-			this.cstmt.setBinaryStream(parameterIndex, x, length);
+			this.cstmt.setBinaryStream(pIndex, x, length);
 		}
 	}
 	public void setBlob(int i, Blob x) throws java.sql.SQLException {
@@ -809,40 +809,40 @@ public class CallableStatementImpl implements CallableStatement {
 			this.cstmt.setBlob(i, x);
 		}
 	}
-	public void setBoolean(int parameterIndex, boolean x) throws java.sql.SQLException {
+	public void setBoolean(int pIndex, boolean x) throws java.sql.SQLException {
 		if(this.cstmts != null) {
 			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setBoolean(parameterIndex, x);
+				cstmts[i].setBoolean(pIndex, x);
 			}
 		} else {
-			this.cstmt.setBoolean(parameterIndex, x);
+			this.cstmt.setBoolean(pIndex, x);
 		}
 	}
-	public void setByte(int parameterIndex, byte x) throws java.sql.SQLException {
+	public void setByte(int pIndex, byte x) throws java.sql.SQLException {
 		if(this.cstmts != null) {
 			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setByte(parameterIndex, x);
+				cstmts[i].setByte(pIndex, x);
 			}
 		} else {
-			this.cstmt.setByte(parameterIndex, x);
+			this.cstmt.setByte(pIndex, x);
 		}
 	}
-	public void setBytes(int parameterIndex, byte[] x) throws java.sql.SQLException {
+	public void setBytes(int pIndex, byte[] x) throws java.sql.SQLException {
 		if(this.cstmts != null) {
 			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setBytes(parameterIndex, x);
+				cstmts[i].setBytes(pIndex, x);
 			}
 		} else {
-			this.cstmt.setBytes(parameterIndex, x);
+			this.cstmt.setBytes(pIndex, x);
 		}
 	}
-	public void setCharacterStream(int parameterIndex, Reader reader, int length) throws java.sql.SQLException {
+	public void setCharacterStream(int pIndex, Reader reader, int length) throws java.sql.SQLException {
 		if(this.cstmts != null) {
 			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setCharacterStream(parameterIndex, reader, length);
+				cstmts[i].setCharacterStream(pIndex, reader, length);
 			}
 		} else {
-			this.cstmt.setCharacterStream(parameterIndex, reader, length);
+			this.cstmt.setCharacterStream(pIndex, reader, length);
 		}
 	}
 	public void setClob(int i, Clob x) throws java.sql.SQLException {
@@ -854,103 +854,103 @@ public class CallableStatementImpl implements CallableStatement {
 			this.cstmt.setClob(i, x);
 		}
 	}
-	public void setDate(int parameterIndex, Date x, Calendar cal) throws java.sql.SQLException {
+	public void setDate(int pIndex, Date x, Calendar cal) throws java.sql.SQLException {
 		if(this.cstmts != null) {
 			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setDate(parameterIndex, x, cal);
+				cstmts[i].setDate(pIndex, x, cal);
 			}
 		} else {
-			this.cstmt.setDate(parameterIndex, x, cal);
+			this.cstmt.setDate(pIndex, x, cal);
 		}
 	}
-	public void setDate(int parameterIndex, Date x) throws java.sql.SQLException {
+	public void setDate(int pIndex, Date x) throws java.sql.SQLException {
 		if(this.cstmts != null) {
 			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setDate(parameterIndex, x);
+				cstmts[i].setDate(pIndex, x);
 			}
 		} else {
-			this.cstmt.setDate(parameterIndex, x);
+			this.cstmt.setDate(pIndex, x);
 		}
 	}
-	public void setDouble(int parameterIndex, double x) throws java.sql.SQLException {
+	public void setDouble(int pIndex, double x) throws java.sql.SQLException {
 		if(this.cstmts != null) {
 			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setDouble(parameterIndex, x);
+				cstmts[i].setDouble(pIndex, x);
 			}
 		} else {
-			this.cstmt.setDouble(parameterIndex, x);
+			this.cstmt.setDouble(pIndex, x);
 		}
 	}
-	public void setFloat(int parameterIndex, float x) throws java.sql.SQLException {
+	public void setFloat(int pIndex, float x) throws java.sql.SQLException {
 		if(this.cstmts != null) {
 			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setFloat(parameterIndex, x);
+				cstmts[i].setFloat(pIndex, x);
 			}
 		} else {
-			this.cstmt.setFloat(parameterIndex, x);
+			this.cstmt.setFloat(pIndex, x);
 		}
 	}
-	public void setInt(int parameterIndex, int x) throws java.sql.SQLException {
+	public void setInt(int pIndex, int x) throws java.sql.SQLException {
 		if(this.cstmts != null) {
 			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setInt(parameterIndex, x);
+				cstmts[i].setInt(pIndex, x);
 			}
 		} else {
-			this.cstmt.setInt(parameterIndex, x);
+			this.cstmt.setInt(pIndex, x);
 		}
 	}
-	public void setLong(int parameterIndex, long x) throws java.sql.SQLException {
+	public void setLong(int pIndex, long x) throws java.sql.SQLException {
 		if(this.cstmts != null) {
 			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setLong(parameterIndex, x);
+				cstmts[i].setLong(pIndex, x);
 			}
 		} else {
-			this.cstmt.setLong(parameterIndex, x);
+			this.cstmt.setLong(pIndex, x);
 		}
 	}
-	public void setNull(int paramIndex, int sqlType, String typeName) throws java.sql.SQLException {
+	public void setNull(int pIndex, int sqlType, String typeName) throws java.sql.SQLException {
 		if(this.cstmts != null) {
 			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setNull(paramIndex, sqlType, typeName);
+				cstmts[i].setNull(pIndex, sqlType, typeName);
 			}
 		} else {
-			this.cstmt.setNull(paramIndex, sqlType, typeName);
+			this.cstmt.setNull(pIndex, sqlType, typeName);
 		}
 	}
-	public void setNull(int parameterIndex, int sqlType) throws java.sql.SQLException {
+	public void setNull(int pIndex, int sqlType) throws java.sql.SQLException {
 		if(this.cstmts != null) {
 			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setNull(parameterIndex, sqlType);
+				cstmts[i].setNull(pIndex, sqlType);
 			}
 		} else {
-			this.cstmt.setNull(parameterIndex, sqlType);
+			this.cstmt.setNull(pIndex, sqlType);
 		}
 	}
-	public void setObject(int parameterIndex, Object x, int targetSqlType, int scale) throws java.sql.SQLException {
+	public void setObject(int pIndex, Object x, int targetSqlType, int scale) throws java.sql.SQLException {
 		if(this.cstmts != null) {
 			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setObject(parameterIndex, x, targetSqlType, scale);
+				cstmts[i].setObject(pIndex, x, targetSqlType, scale);
 			}
 		} else {
-			this.cstmt.setObject(parameterIndex, x, targetSqlType, scale);
+			this.cstmt.setObject(pIndex, x, targetSqlType, scale);
 		}
 	}
-	public void setObject(int parameterIndex, Object x, int targetSqlType) throws java.sql.SQLException {
+	public void setObject(int pIndex, Object x, int targetSqlType) throws java.sql.SQLException {
 		if(this.cstmts != null) {
 			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setObject(parameterIndex, x, targetSqlType);
+				cstmts[i].setObject(pIndex, x, targetSqlType);
 			}
 		} else {
-			this.cstmt.setObject(parameterIndex, x, targetSqlType);
+			this.cstmt.setObject(pIndex, x, targetSqlType);
 		}
 	}
-	public void setObject(int parameterIndex, Object x) throws java.sql.SQLException {
+	public void setObject(int pIndex, Object x) throws java.sql.SQLException {
 		if(this.cstmts != null) {
 			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setObject(parameterIndex, x);
+				cstmts[i].setObject(pIndex, x);
 			}
 		} else {
-			this.cstmt.setObject(parameterIndex, x);
+			this.cstmt.setObject(pIndex, x);
 		}
 	}
 	public void setRef(int i, Ref x) throws java.sql.SQLException {
@@ -962,81 +962,81 @@ public class CallableStatementImpl implements CallableStatement {
 			this.cstmt.setRef(i, x);
 		}
 	}
-	public void setShort(int parameterIndex, short x) throws java.sql.SQLException {
+	public void setShort(int pIndex, short x) throws java.sql.SQLException {
 		if(this.cstmts != null) {
 			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setShort(parameterIndex, x);
+				cstmts[i].setShort(pIndex, x);
 			}
 		} else {
-			this.cstmt.setShort(parameterIndex, x);
+			this.cstmt.setShort(pIndex, x);
 		}
 	}
-	public void setString(int parameterIndex, String x) throws java.sql.SQLException {
+	public void setString(int pIndex, String x) throws java.sql.SQLException {
 		if(this.cstmts != null) {
 			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setString(parameterIndex, x);
+				cstmts[i].setString(pIndex, x);
 			}
 		} else {
-			this.cstmt.setString(parameterIndex, x);
+			this.cstmt.setString(pIndex, x);
 		}
 	}
-	public void setTime(int parameterIndex, Time x, Calendar cal) throws java.sql.SQLException {
+	public void setTime(int pIndex, Time x, Calendar cal) throws java.sql.SQLException {
 		if(this.cstmts != null) {
 			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setTime(parameterIndex, x, cal);
+				cstmts[i].setTime(pIndex, x, cal);
 			}
 		} else {
-			this.cstmt.setTime(parameterIndex, x, cal);
+			this.cstmt.setTime(pIndex, x, cal);
 		}
 	}
-	public void setTime(int parameterIndex, Time x) throws java.sql.SQLException {
+	public void setTime(int pIndex, Time x) throws java.sql.SQLException {
 		if(this.cstmts != null) {
 			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setTime(parameterIndex, x);
+				cstmts[i].setTime(pIndex, x);
 			}
 		} else {
-			this.cstmt.setTime(parameterIndex, x);
+			this.cstmt.setTime(pIndex, x);
 		}
 	}
-	public void setTimestamp(int parameterIndex, Timestamp x, Calendar cal) throws java.sql.SQLException {
+	public void setTimestamp(int pIndex, Timestamp x, Calendar cal) throws java.sql.SQLException {
 		if(this.cstmts != null) {
 			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setTimestamp(parameterIndex, x, cal);
+				cstmts[i].setTimestamp(pIndex, x, cal);
 			}
 		} else {
-			this.cstmt.setTimestamp(parameterIndex, x, cal);
+			this.cstmt.setTimestamp(pIndex, x, cal);
 		}
 	}
-	public void setTimestamp(int parameterIndex, Timestamp x) throws java.sql.SQLException {
+	public void setTimestamp(int pIndex, Timestamp x) throws java.sql.SQLException {
 		if(this.cstmts != null) {
 			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setTimestamp(parameterIndex, x);
+				cstmts[i].setTimestamp(pIndex, x);
 			}
 		} else {
-			this.cstmt.setTimestamp(parameterIndex, x);
+			this.cstmt.setTimestamp(pIndex, x);
 		}
 
 	}
 /**
- * @deprecated      
+ * @deprecated
  */
-	public void setUnicodeStream(int parameterIndex, InputStream x, int length) throws java.sql.SQLException {
+	public void setUnicodeStream(int pIndex, InputStream x, int length) throws java.sql.SQLException {
 		if(this.cstmts != null) {
 			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setUnicodeStream(parameterIndex, x, length);
+				cstmts[i].setUnicodeStream(pIndex, x, length);
 			}
 		} else {
-			this.cstmt.setUnicodeStream(parameterIndex, x, length);
+			this.cstmt.setUnicodeStream(pIndex, x, length);
 		}
 
 	}
-	public void setURL(int parameterIndex, URL x) throws java.sql.SQLException {
+	public void setURL(int pIndex, URL x) throws java.sql.SQLException {
 		if(this.cstmts != null) {
 			for(int i = 0; i < this.cstmts.length; i++) {
-				cstmts[i].setURL(parameterIndex, x);
+				cstmts[i].setURL(pIndex, x);
 			}
 		} else {
-			this.cstmt.setURL(parameterIndex, x);
+			this.cstmt.setURL(pIndex, x);
 		}
 	}
 	public ResultSet executeQuery(String sql) throws SQLException {
