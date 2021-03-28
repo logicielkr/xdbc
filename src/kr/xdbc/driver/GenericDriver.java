@@ -62,6 +62,7 @@ public class GenericDriver implements java.sql.Driver {
 		try { Class.forName("org.hsqldb.jdbc.JDBCDriver");} catch(ClassNotFoundException e) {}
 		try { Class.forName("org.h2.Driver");} catch(ClassNotFoundException e) {}
 		try { Class.forName("org.mariadb.jdbc.Driver");} catch(ClassNotFoundException e) {}
+		try { Class.forName("com.tmax.tibero.jdbc.TbDriver");} catch(ClassNotFoundException e) {}
 		
 		try { DriverManager.registerDriver(new kr.xdbc.driver.GenericDriver()); } catch (SQLException e) { }
 		
