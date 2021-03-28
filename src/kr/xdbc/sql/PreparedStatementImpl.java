@@ -309,18 +309,18 @@ public final class PreparedStatementImpl implements PreparedStatement {
 	public ResultSetMetaData getMetaData() throws java.sql.SQLException {
 		if(pstmts != null) {
 			return pstmts[0].getMetaData();
-		} else  {
+		} else {
 			return pstmt.getMetaData();
 		}
 	}
 	public ParameterMetaData getParameterMetaData() throws java.sql.SQLException {
 		if(pstmts != null) {
 			return pstmts[0].getParameterMetaData();
-		} else  {
+		} else {
 			return pstmt.getParameterMetaData();
 		}
 	}
-	public void setArray(int i,Array  x) throws java.sql.SQLException {
+	public void setArray(int i,Array x) throws java.sql.SQLException {
 		if(pstmts != null) {
 			for(int y = 0; y < pstmts.length; y++) {
 				this.pstmts[y].setArray(i, x);
@@ -330,35 +330,35 @@ public final class PreparedStatementImpl implements PreparedStatement {
 		}
 		setVariable(i, x);
 	}
-	public void setAsciiStream(int parameterIndex,InputStream  x,int length) throws java.sql.SQLException {
+	public void setAsciiStream(int pIndex, InputStream x, int length) throws java.sql.SQLException {
 		if(pstmts != null) {
 			for(int i = 0; i < pstmts.length; i++) {
-				this.pstmts[i].setAsciiStream(parameterIndex, x, length);
+				this.pstmts[i].setAsciiStream(pIndex, x, length);
 			}
 		} else {
-			pstmt.setAsciiStream(parameterIndex, x, length);
+			pstmt.setAsciiStream(pIndex, x, length);
 		}
 	}
-	public void setBigDecimal(int parameterIndex,BigDecimal  x) throws java.sql.SQLException {
+	public void setBigDecimal(int pIndex, BigDecimal x) throws java.sql.SQLException {
 		if(pstmts != null) {
 			for(int i = 0; i < pstmts.length; i++) {
-				this.pstmts[i].setBigDecimal(parameterIndex, x);
+				this.pstmts[i].setBigDecimal(pIndex, x);
 			}
 		} else {
-			pstmt.setBigDecimal(parameterIndex, x);
+			pstmt.setBigDecimal(pIndex, x);
 		}
-		setVariable(parameterIndex, x);
+		setVariable(pIndex, x);
 	}
-	public void setBinaryStream(int parameterIndex,InputStream  x,int length) throws java.sql.SQLException {
+	public void setBinaryStream(int pIndex, InputStream x,int length) throws java.sql.SQLException {
 		if(pstmts != null) {
 			for(int i = 0; i < pstmts.length; i++) {
-				this.pstmts[i].setBinaryStream(parameterIndex, x, length);
+				this.pstmts[i].setBinaryStream(pIndex, x, length);
 			}
 		} else {
-			pstmt.setBinaryStream(parameterIndex, x, length);
+			pstmt.setBinaryStream(pIndex, x, length);
 		}
 	}
-	public void setBlob(int i,Blob  x) throws java.sql.SQLException {
+	public void setBlob(int i,Blob x) throws java.sql.SQLException {
 		if(pstmts != null) {
 			for(int y = 0; y < pstmts.length; y++) {
 				this.pstmts[y].setBlob(i, x);
@@ -368,46 +368,46 @@ public final class PreparedStatementImpl implements PreparedStatement {
 		}
 		setVariable(i, x);
 	}
-	public void setBoolean(int parameterIndex,boolean x) throws java.sql.SQLException {
+	public void setBoolean(int pIndex,boolean x) throws java.sql.SQLException {
 		if(pstmts != null) {
 			for(int i = 0; i < pstmts.length; i++) {
-				this.pstmts[i].setBoolean(parameterIndex, x);
+				this.pstmts[i].setBoolean(pIndex, x);
 			}
 		} else {
-			pstmt.setBoolean(parameterIndex, x);
+			pstmt.setBoolean(pIndex, x);
 		}
-		setVariable(parameterIndex, new Boolean(x));
+		setVariable(pIndex, new Boolean(x));
 	}
-	public void setByte(int parameterIndex,byte x) throws java.sql.SQLException {
+	public void setByte(int pIndex,byte x) throws java.sql.SQLException {
 		if(pstmts != null) {
 			for(int i = 0; i < pstmts.length; i++) {
-				this.pstmts[i].setByte(parameterIndex, x);
+				this.pstmts[i].setByte(pIndex, x);
 			}
 		} else {
-			pstmt.setByte(parameterIndex, x);
+			pstmt.setByte(pIndex, x);
 		}
-		setVariable(parameterIndex, new Byte(x));
+		setVariable(pIndex, new Byte(x));
 	}
-	public void setBytes(int parameterIndex,byte[] x) throws java.sql.SQLException {
+	public void setBytes(int pIndex,byte[] x) throws java.sql.SQLException {
 		if(pstmts != null) {
 			for(int i = 0; i < pstmts.length; i++) {
-				this.pstmts[i].setBytes(parameterIndex, x);
+				this.pstmts[i].setBytes(pIndex, x);
 			}
 		} else {
-			pstmt.setBytes(parameterIndex, x);
+			pstmt.setBytes(pIndex, x);
 		}
-		setVariable(parameterIndex, x);
+		setVariable(pIndex, x);
 	}
-	public void setCharacterStream(int parameterIndex,Reader  reader,int length) throws java.sql.SQLException {
+	public void setCharacterStream(int pIndex,Reader reader,int length) throws java.sql.SQLException {
 		if(pstmts != null) {
 			for(int i = 0; i < pstmts.length; i++) {
-				this.pstmts[i].setCharacterStream(parameterIndex, reader, length);
+				this.pstmts[i].setCharacterStream(pIndex, reader, length);
 			}
 		} else {
-			pstmt.setCharacterStream(parameterIndex, reader, length);
+			pstmt.setCharacterStream(pIndex, reader, length);
 		}
 	}
-	public void setClob(int i,Clob  x) throws java.sql.SQLException {
+	public void setClob(int i,Clob x) throws java.sql.SQLException {
 		if(pstmts != null) {
 			for(int y = 0; y < pstmts.length; y++) {
 				this.pstmts[y].setClob(i, x);
@@ -417,117 +417,117 @@ public final class PreparedStatementImpl implements PreparedStatement {
 		}
 		setVariable(i, x);
 	}
-	public void setDate(int parameterIndex,Date  x) throws java.sql.SQLException {
+	public void setDate(int pIndex,Date x) throws java.sql.SQLException {
 		if(pstmts != null) {
 			for(int i = 0; i < pstmts.length; i++) {
-				this.pstmts[i].setDate(parameterIndex, x);
+				this.pstmts[i].setDate(pIndex, x);
 			}
 		} else {
-			pstmt.setDate(parameterIndex, x);
+			pstmt.setDate(pIndex, x);
 		}
-		setVariable(parameterIndex, x);
+		setVariable(pIndex, x);
 	}
-	public void setDate(int parameterIndex,Date  x,Calendar  cal) throws java.sql.SQLException {
+	public void setDate(int pIndex,Date x,Calendar cal) throws java.sql.SQLException {
 		if(pstmts != null) {
 			for(int i = 0; i < pstmts.length; i++) {
-				this.pstmts[i].setDate(parameterIndex, x, cal);
+				this.pstmts[i].setDate(pIndex, x, cal);
 			}
 		} else {
-			pstmt.setDate(parameterIndex, x, cal);
+			pstmt.setDate(pIndex, x, cal);
 		}
 		
 	}
-	public void setDouble(int parameterIndex,double x) throws java.sql.SQLException {
+	public void setDouble(int pIndex,double x) throws java.sql.SQLException {
 		if(pstmts != null) {
 			for(int i = 0; i < pstmts.length; i++) {
-				this.pstmts[i].setDouble(parameterIndex, x);
+				this.pstmts[i].setDouble(pIndex, x);
 			}
 		} else {
-			pstmt.setDouble(parameterIndex, x);
+			pstmt.setDouble(pIndex, x);
 		}
-		setVariable(parameterIndex, new Double(x));
+		setVariable(pIndex, new Double(x));
 	}
-	public void setFloat(int parameterIndex,float x) throws java.sql.SQLException {
+	public void setFloat(int pIndex,float x) throws java.sql.SQLException {
 		if(pstmts != null) {
 			for(int i = 0; i < pstmts.length; i++) {
-				this.pstmts[i].setFloat(parameterIndex, x);
+				this.pstmts[i].setFloat(pIndex, x);
 			}
 		} else {
-			pstmt.setFloat(parameterIndex, x);
+			pstmt.setFloat(pIndex, x);
 		}
-		setVariable(parameterIndex, new Float(x));
+		setVariable(pIndex, new Float(x));
 	}
-	public void setInt(int parameterIndex,int x) throws java.sql.SQLException {
+	public void setInt(int pIndex,int x) throws java.sql.SQLException {
 		if(pstmts != null) {
 			for(int i = 0; i < pstmts.length; i++) {
-				this.pstmts[i].setInt(parameterIndex, x);
+				this.pstmts[i].setInt(pIndex, x);
 			}
 		} else {
-			pstmt.setInt(parameterIndex, x);
+			pstmt.setInt(pIndex, x);
 		}
-		setVariable(parameterIndex, new Integer(x));
+		setVariable(pIndex, new Integer(x));
 	}
-	public void setLong(int parameterIndex,long x) throws java.sql.SQLException {
+	public void setLong(int pIndex,long x) throws java.sql.SQLException {
 		if(pstmts != null) {
 			for(int i = 0; i < pstmts.length; i++) {
-				this.pstmts[i].setLong(parameterIndex, x);
+				this.pstmts[i].setLong(pIndex, x);
 			}
 		} else {
-			pstmt.setLong(parameterIndex, x);
+			pstmt.setLong(pIndex, x);
 		}
-		setVariable(parameterIndex, new Long(x));
+		setVariable(pIndex, new Long(x));
 	}
-	public void setNull(int parameterIndex,int sqlType) throws java.sql.SQLException {
+	public void setNull(int pIndex,int sqlType) throws java.sql.SQLException {
 		if(pstmts != null) {
 			for(int i = 0; i < pstmts.length; i++) {
-				this.pstmts[i].setNull(parameterIndex, sqlType);
+				this.pstmts[i].setNull(pIndex, sqlType);
 			}
 		} else {
-			pstmt.setNull(parameterIndex, sqlType);
+			pstmt.setNull(pIndex, sqlType);
 		}
-		setVariable(parameterIndex, null);
+		setVariable(pIndex, null);
 	}
-	public void setNull(int paramIndex,int sqlType, String  typeName) throws java.sql.SQLException {
+	public void setNull(int pIndex,int sqlType, String typeName) throws java.sql.SQLException {
 		if(pstmts != null) {
 			for(int i = 0; i < pstmts.length; i++) {
-				this.pstmts[i].setNull(paramIndex, sqlType, typeName);
+				this.pstmts[i].setNull(pIndex, sqlType, typeName);
 			}
 		} else {
-			pstmt.setNull(paramIndex, sqlType, typeName);
+			pstmt.setNull(pIndex, sqlType, typeName);
 		}
-		setVariable(paramIndex, null);
+		setVariable(pIndex, null);
 	}
-	public void setObject(int parameterIndex,Object  x) throws java.sql.SQLException {
+	public void setObject(int pIndex,Object x) throws java.sql.SQLException {
 		if(pstmts != null) {
 			for(int i = 0; i < pstmts.length; i++) {
-				this.pstmts[i].setObject(parameterIndex, x);
+				this.pstmts[i].setObject(pIndex, x);
 			}
 		} else {
-			pstmt.setObject(parameterIndex, x);
+			pstmt.setObject(pIndex, x);
 		}
-		setVariable(parameterIndex, x);
+		setVariable(pIndex, x);
 	}
-	public void setObject(int parameterIndex,Object  x,int targetSqlType) throws java.sql.SQLException {
+	public void setObject(int pIndex,Object x,int targetSqlType) throws java.sql.SQLException {
 		if(pstmts != null) {
 			for(int i = 0; i < pstmts.length; i++) {
-				this.pstmts[i].setObject(parameterIndex, x, targetSqlType);
+				this.pstmts[i].setObject(pIndex, x, targetSqlType);
 			}
 		} else {
-			pstmt.setObject(parameterIndex, x, targetSqlType);
+			pstmt.setObject(pIndex, x, targetSqlType);
 		}
-		setVariable(parameterIndex, x);
+		setVariable(pIndex, x);
 	}
-	public void setObject(int parameterIndex, Object  x, int targetSqlType, int scale) throws java.sql.SQLException {
+	public void setObject(int pIndex, Object x, int targetSqlType, int scale) throws java.sql.SQLException {
 		if(pstmts != null) {
 			for(int i = 0; i < pstmts.length; i++) {
-				this.pstmts[i].setObject(parameterIndex, x, targetSqlType, scale);
+				this.pstmts[i].setObject(pIndex, x, targetSqlType, scale);
 			}
 		} else {
-			pstmt.setObject(parameterIndex, x, targetSqlType, scale);
+			pstmt.setObject(pIndex, x, targetSqlType, scale);
 		}
-		setVariable(parameterIndex, x);
+		setVariable(pIndex, x);
 	}
-	public void setRef(int i,Ref  x) throws java.sql.SQLException {
+	public void setRef(int i,Ref x) throws java.sql.SQLException {
 		if(pstmts != null) {
 			for(int y = 0; y < pstmts.length; y++) {
 				this.pstmts[y].setRef(i, x);
@@ -537,90 +537,90 @@ public final class PreparedStatementImpl implements PreparedStatement {
 		}
 		setVariable(i, x);
 	}
-	public void setShort(int parameterIndex,short x) throws java.sql.SQLException {
+	public void setShort(int pIndex,short x) throws java.sql.SQLException {
 		if(pstmts != null) {
 			for(int i = 0; i < pstmts.length; i++) {
-				this.pstmts[i].setShort(parameterIndex, x);
+				this.pstmts[i].setShort(pIndex, x);
 			}
 		} else {
-		pstmt.setShort(parameterIndex, x);
+		pstmt.setShort(pIndex, x);
 		}
-		setVariable(parameterIndex, new Short(x));
+		setVariable(pIndex, new Short(x));
 	}
-	public void setString(int parameterIndex, String x) throws java.sql.SQLException {
+	public void setString(int pIndex, String x) throws java.sql.SQLException {
 		if(pstmts != null) {
 			for(int i = 0; i < pstmts.length; i++) {
-				this.pstmts[i].setString(parameterIndex, x);
+				this.pstmts[i].setString(pIndex, x);
 			}
 		} else {
-			pstmt.setString(parameterIndex, x);
+			pstmt.setString(pIndex, x);
 		}
 
-		setVariable(parameterIndex, x);
+		setVariable(pIndex, x);
 	}
-	public void setTime(int parameterIndex,Time  x) throws java.sql.SQLException {
+	public void setTime(int pIndex,Time x) throws java.sql.SQLException {
 		if(pstmts != null) {
 			for(int i = 0; i < pstmts.length; i++) {
-				this.pstmts[i].setTime(parameterIndex, x);
+				this.pstmts[i].setTime(pIndex, x);
 			}
 		} else {
-			pstmt.setTime(parameterIndex, x);
+			pstmt.setTime(pIndex, x);
 		}
-		setVariable(parameterIndex, x);
+		setVariable(pIndex, x);
 	}
-	public void setTime(int parameterIndex,Time  x,Calendar  cal) throws java.sql.SQLException {
+	public void setTime(int pIndex,Time x,Calendar cal) throws java.sql.SQLException {
 		if(pstmts != null) {
 			for(int i = 0; i < pstmts.length; i++) {
-				this.pstmts[i].setTime(parameterIndex, x, cal);
+				this.pstmts[i].setTime(pIndex, x, cal);
 			}
 		} else {
-			pstmt.setTime(parameterIndex, x, cal);
+			pstmt.setTime(pIndex, x, cal);
 		}
-		setVariable(parameterIndex, x);
+		setVariable(pIndex, x);
 	}
-	public void setTimestamp(int parameterIndex,Timestamp  x) throws java.sql.SQLException {
+	public void setTimestamp(int pIndex,Timestamp x) throws java.sql.SQLException {
 		if(pstmts != null) {
 			for(int i = 0; i < pstmts.length; i++) {
-				this.pstmts[i].setTimestamp(parameterIndex, x);
+				this.pstmts[i].setTimestamp(pIndex, x);
 			}
 		} else {
-		pstmt.setTimestamp(parameterIndex, x);
+		pstmt.setTimestamp(pIndex, x);
 		}
-		setVariable(parameterIndex, x);
+		setVariable(pIndex, x);
 	}
-	public void setTimestamp(int parameterIndex,Timestamp  x,Calendar  cal) throws java.sql.SQLException {
+	public void setTimestamp(int pIndex,Timestamp x,Calendar cal) throws java.sql.SQLException {
 		if(pstmts != null) {
 			for(int i = 0; i < pstmts.length; i++) {
-				this.pstmts[i].setTimestamp(parameterIndex, x, cal);
+				this.pstmts[i].setTimestamp(pIndex, x, cal);
 			}
 		} else {
-			pstmt.setTimestamp(parameterIndex, x, cal);
+			pstmt.setTimestamp(pIndex, x, cal);
 		}
-		setVariable(parameterIndex, x);
+		setVariable(pIndex, x);
 	}
 /**
- * @deprecated      
+ * @deprecated
  */
-	public void setUnicodeStream(int parameterIndex, InputStream  x,int length) throws java.sql.SQLException {
+	public void setUnicodeStream(int pIndex, InputStream x,int length) throws java.sql.SQLException {
 		if(pstmts != null) {
 			for(int i = 0; i < pstmts.length; i++) {
-				this.pstmts[i].setUnicodeStream(parameterIndex, x, length);
+				this.pstmts[i].setUnicodeStream(pIndex, x, length);
 			}
 		} else {
-			pstmt.setUnicodeStream(parameterIndex, x, length);
+			pstmt.setUnicodeStream(pIndex, x, length);
 		}
 	}
-	public void setURL(int parameterIndex,URL  x) throws java.sql.SQLException {
+	public void setURL(int pIndex,URL x) throws java.sql.SQLException {
 		if(pstmts != null) {
 			for(int i = 0; i < pstmts.length; i++) {
-				this.pstmts[i].setURL(parameterIndex, x);
+				this.pstmts[i].setURL(pIndex, x);
 			}
 		} else {
-			pstmt.setURL(parameterIndex, x);
+			pstmt.setURL(pIndex, x);
 		}
-		setVariable(parameterIndex, x);
+		setVariable(pIndex, x);
 	}
-	public void addBatch(String  sql) throws java.sql.SQLException {
+	public void addBatch(String sql) throws java.sql.SQLException {
 		try {
 			if(pstmts != null) {
 				for(int i = 0; i < pstmts.length; i++) {
@@ -689,7 +689,7 @@ public final class PreparedStatementImpl implements PreparedStatement {
 			throw e;
 		}
 	}
-	public boolean execute(String  sql,int autoGeneratedKeys) throws java.sql.SQLException {
+	public boolean execute(String sql,int autoGeneratedKeys) throws java.sql.SQLException {
 		try {
 			boolean issucess = false;
 			if(pstmts != null) {
@@ -706,7 +706,7 @@ public final class PreparedStatementImpl implements PreparedStatement {
 			throw e;
 		}
 	}
-	public boolean execute(String  sql, int[] columnIndexes) throws java.sql.SQLException {
+	public boolean execute(String sql, int[] columnIndexes) throws java.sql.SQLException {
 		try {
 			boolean issucess = false;
 			if(pstmts != null) {
@@ -723,7 +723,7 @@ public final class PreparedStatementImpl implements PreparedStatement {
 			throw e;
 		}
 	}
-	public boolean execute(String  sql,String [] columnNames) throws java.sql.SQLException {
+	public boolean execute(String sql,String [] columnNames) throws java.sql.SQLException {
 		try {
 			boolean result = false;
 			if(pstmts != null) {
@@ -751,13 +751,13 @@ public final class PreparedStatementImpl implements PreparedStatement {
 			return pstmt.executeBatch();
 		}
 	}
-	public ResultSet executeQuery(String  sql) throws java.sql.SQLException {
+	public ResultSet executeQuery(String sql) throws java.sql.SQLException {
 		try {
 			if(pstmts != null) {
 				ResultSet rs = new ResultSetImpl(this, pstmts[0].executeQuery(sql));
 				logger.fine(sql);
 				return rs;
-			} else  {
+			} else {
 				ResultSet rs = new ResultSetImpl(this, pstmt.executeQuery(sql));
 				logger.fine(sql);
 				return rs;
@@ -767,7 +767,7 @@ public final class PreparedStatementImpl implements PreparedStatement {
 			throw e;
 		}
 	}
-	public int executeUpdate(String  sql) throws java.sql.SQLException {
+	public int executeUpdate(String sql) throws java.sql.SQLException {
 		try {
 			int result = 0;
 			if(pstmts != null) {
@@ -784,7 +784,7 @@ public final class PreparedStatementImpl implements PreparedStatement {
 			throw e;
 		}
 	}
-	public int executeUpdate(String  sql,int autoGeneratedKeys) throws java.sql.SQLException {
+	public int executeUpdate(String sql,int autoGeneratedKeys) throws java.sql.SQLException {
 		try {
 			int result = 0;
 			if(pstmts != null) {
@@ -801,7 +801,7 @@ public final class PreparedStatementImpl implements PreparedStatement {
 			throw e;
 		}
 	}
-	public int executeUpdate(String  sql,int[] columnIndexes) throws java.sql.SQLException {
+	public int executeUpdate(String sql,int[] columnIndexes) throws java.sql.SQLException {
 		try {
 			int result = 0;
 			if(pstmts != null) {
@@ -818,7 +818,7 @@ public final class PreparedStatementImpl implements PreparedStatement {
 			throw e;
 		}
 	}
-	public int executeUpdate(String  sql,String [] columnNames) throws java.sql.SQLException {
+	public int executeUpdate(String sql,String [] columnNames) throws java.sql.SQLException {
 		try {
 			int result = 0;
 			if(pstmts != null) {
@@ -841,102 +841,102 @@ public final class PreparedStatementImpl implements PreparedStatement {
 	public int getFetchDirection() throws java.sql.SQLException {
 		if(pstmts != null) {
 			return pstmts[0].getFetchDirection();
-		} else  {
+		} else {
 		return pstmt.getFetchDirection();
 		}
 	}
 	public int getFetchSize() throws java.sql.SQLException {
 		if(pstmts != null) {
 			return pstmts[0].getFetchSize();
-		} else  {
+		} else {
 		return pstmt.getFetchSize();
 		}
 	}
 	public ResultSet getGeneratedKeys() throws java.sql.SQLException {
 		if(pstmts != null) {
 			return new ResultSetImpl(this, pstmts[0].getGeneratedKeys());
-		} else  {
+		} else {
 		return new ResultSetImpl(this, pstmt.getGeneratedKeys());
 		}
 	}
 	public int getMaxFieldSize() throws java.sql.SQLException {
 		if(pstmts != null) {
 			return pstmts[0].getMaxFieldSize();
-		} else  {
+		} else {
 		return pstmt.getMaxFieldSize();
 		}
 	}
 	public int getMaxRows() throws java.sql.SQLException {
 		if(pstmts != null) {
 			return pstmts[0].getMaxRows();
-		} else  {
+		} else {
 		return pstmt.getMaxRows();
 		}
 	}
 	public boolean getMoreResults() throws java.sql.SQLException {
 		if(pstmts != null) {
 			return pstmts[0].getMoreResults();
-		} else  {
+		} else {
 		return pstmt.getMoreResults();
 		}
 	}
 	public boolean getMoreResults(int current) throws java.sql.SQLException {
 		if(pstmts != null) {
 			return pstmts[0].getMoreResults(current);
-		} else  {
+		} else {
 		return pstmt.getMoreResults(current);
 		}
 	}
 	public int getQueryTimeout() throws java.sql.SQLException {
 		if(pstmts != null) {
 			return pstmts[0].getQueryTimeout();
-		} else  {
+		} else {
 		return pstmt.getQueryTimeout();
 		}
 	}
 	public ResultSet getResultSet() throws java.sql.SQLException {
 		if(pstmts != null) {
 			return new ResultSetImpl(this, pstmts[0].getResultSet());
-		} else  {
+		} else {
 		return new ResultSetImpl(this, pstmt.getResultSet());
 		}
 	}
 	public int getResultSetConcurrency() throws java.sql.SQLException {
 		if(pstmts != null) {
 			return pstmts[0].getResultSetConcurrency();
-		} else  {
+		} else {
 		return pstmt.getResultSetConcurrency();
 		}
 	}
 	public int getResultSetHoldability() throws java.sql.SQLException {
 		if(pstmts != null) {
 			return pstmts[0].getResultSetHoldability();
-		} else  {
+		} else {
 		return pstmt.getResultSetHoldability();
 		}
 	}
 	public int getResultSetType() throws java.sql.SQLException {
 		if(pstmts != null) {
 			return pstmts[0].getResultSetType();
-		} else  {
+		} else {
 		return pstmt.getResultSetType();
 		}
 	}
 	public int getUpdateCount() throws java.sql.SQLException {
 		if(pstmts != null) {
 			return pstmts[0].getUpdateCount();
-		} else  {
+		} else {
 		return pstmt.getUpdateCount();
 		}
 	}
 	public SQLWarning getWarnings() throws java.sql.SQLException {
 		if(pstmts != null) {
 			return pstmts[0].getWarnings();
-		} else  {
+		} else {
 		return pstmt.getWarnings();
 		}
 	}
-	public void setCursorName(String  name) throws java.sql.SQLException {
+	public void setCursorName(String name) throws java.sql.SQLException {
 		if(pstmts != null) {
 			for(int i = 0; i < pstmts.length; i++) {
 				this.pstmts[i].setCursorName(name);
@@ -1175,21 +1175,21 @@ public final class PreparedStatementImpl implements PreparedStatement {
 	public boolean isClosed() throws java.sql.SQLException {
 		if(pstmts != null) {
 			return pstmts[0].isClosed();
-		} else  {
+		} else {
 			return this.pstmt.isClosed();
 		}
 	}
 	public boolean isCloseOnCompletion() throws java.sql.SQLException {
 		if(pstmts != null) {
 			return pstmts[0].isCloseOnCompletion();
-		} else  {
+		} else {
 			return this.pstmt.isCloseOnCompletion();
 		}
 	}
 	public boolean isPoolable() throws java.sql.SQLException {
 		if(pstmts != null) {
 			return pstmts[0].isPoolable();
-		} else  {
+		} else {
 			return this.pstmt.isPoolable();
 		}
 	}
