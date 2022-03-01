@@ -26,8 +26,8 @@ jdbc의 몇 가지 확장 기능을 제공한다.
 
 ### 1.4. 배포하는 곳
 
-* 소스코드 : <https://github.com/logicielkr/xdbc>
-* 웹사이트 : <https://graha.kr>
+* 소스코드 : GitHub xdbc 프로젝트 (https://github.com/logicielkr/xdbc)
+* 웹사이트 : xdbc.kr 홈페이지 (https://xdbc.kr)
 
 ## 2. 사용방법
 
@@ -229,7 +229,8 @@ END $$;
 ### 3.4. 다른 데이타베이스에서 사용하고자 하는 경우
 
 * kr.xdbc.driver.GenericDriver의 connect 메소드가 호출되기 전에 사용하고자 하는 JDBC 드라이버를 로딩하면 된다.
-* 위와 같은 일이 번거로운 경우 kr.xdbc.driver.GenericDriver 소스코드를 약간만 수정하면 되는데, 다음 코드의 아래쪽에 비슷한 방식으로 추가하면 된다.
+* 위와 같은 일이 번거로운 경우 kr.xdbc.driver.GenericDriver 소스코드를 약간만 수정하면 되는데, 다음 코드의 아래쪽에 유사한 방식으로 jdbc 드라이버를 추가하면 된다.
+
 ```java
 try { Class.forName("org.h2.Driver");} catch(ClassNotFoundException e) {}
 ```
