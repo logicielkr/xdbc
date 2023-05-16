@@ -376,7 +376,7 @@ public final class PreparedStatementImpl implements PreparedStatement {
 		} else {
 			pstmt.setBoolean(pIndex, x);
 		}
-		setVariable(pIndex, new Boolean(x));
+		setVariable(pIndex, Boolean.valueOf(x));
 	}
 	public void setByte(int pIndex,byte x) throws java.sql.SQLException {
 		if(pstmts != null) {
@@ -386,7 +386,7 @@ public final class PreparedStatementImpl implements PreparedStatement {
 		} else {
 			pstmt.setByte(pIndex, x);
 		}
-		setVariable(pIndex, new Byte(x));
+		setVariable(pIndex, Byte.valueOf(x));
 	}
 	public void setBytes(int pIndex,byte[] x) throws java.sql.SQLException {
 		if(pstmts != null) {
@@ -445,7 +445,7 @@ public final class PreparedStatementImpl implements PreparedStatement {
 		} else {
 			pstmt.setDouble(pIndex, x);
 		}
-		setVariable(pIndex, new Double(x));
+		setVariable(pIndex, Double.valueOf(x));
 	}
 	public void setFloat(int pIndex,float x) throws java.sql.SQLException {
 		if(pstmts != null) {
@@ -455,7 +455,7 @@ public final class PreparedStatementImpl implements PreparedStatement {
 		} else {
 			pstmt.setFloat(pIndex, x);
 		}
-		setVariable(pIndex, new Float(x));
+		setVariable(pIndex, Float.valueOf(x));
 	}
 	public void setInt(int pIndex,int x) throws java.sql.SQLException {
 		if(pstmts != null) {
@@ -465,7 +465,7 @@ public final class PreparedStatementImpl implements PreparedStatement {
 		} else {
 			pstmt.setInt(pIndex, x);
 		}
-		setVariable(pIndex, new Integer(x));
+		setVariable(pIndex, Integer.valueOf(x));
 	}
 	public void setLong(int pIndex,long x) throws java.sql.SQLException {
 		if(pstmts != null) {
@@ -475,7 +475,7 @@ public final class PreparedStatementImpl implements PreparedStatement {
 		} else {
 			pstmt.setLong(pIndex, x);
 		}
-		setVariable(pIndex, new Long(x));
+		setVariable(pIndex, Long.valueOf(x));
 	}
 	public void setNull(int pIndex,int sqlType) throws java.sql.SQLException {
 		if(pstmts != null) {
@@ -545,7 +545,7 @@ public final class PreparedStatementImpl implements PreparedStatement {
 		} else {
 		pstmt.setShort(pIndex, x);
 		}
-		setVariable(pIndex, new Short(x));
+		setVariable(pIndex, Short.valueOf(x));
 	}
 	public void setString(int pIndex, String x) throws java.sql.SQLException {
 		if(pstmts != null) {

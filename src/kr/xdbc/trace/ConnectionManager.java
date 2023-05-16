@@ -39,7 +39,7 @@ public class ConnectionManager {
 	private HashMap hmap;
 	private Map map;
 	private boolean isTrace = false;
-	protected ConnectionManager() {
+	private ConnectionManager() {
 		this.index = Integer.MIN_VALUE;
 		this.hmap = new HashMap();
 		this.map = Collections.synchronizedMap(this.hmap);
@@ -50,13 +50,13 @@ public class ConnectionManager {
 	public static ConnectionManager getInstance() {
 		return ConnectionManagerHolder.instance;
 	}
-	public synchronized int getNextIndex() {
+	private synchronized int getNextIndex() {
 		if(index >= Integer.MAX_VALUE) {
 			index = Integer.MIN_VALUE;
 		}
 		return this.index++;
 	}
-	public int count() {
+	private int count() {
 		return this.map.size();
 	}
 	public void trace(java.io.PrintStream out) {
@@ -102,19 +102,22 @@ public class ConnectionManager {
 			return 0;
 		}
 	}
-	public synchronized int markInternal() {
+	private synchronized int markInternal() {
 		int index = getNextIndex();
 		mark(index);
 		return index;
 	}
-	public synchronized void mark(int index) {
+	private synchronized void mark(int index) {
 		StackTraceElement[] trace = Thread.currentThread().getStackTrace();
-		this.map.put(new Integer(index), trace);
+		this.map.put(Integer.valueOf(index), trace);
 	}
 	public void clear(int index) {
 		if(this.isTrace) {
 			clearInternal(index);
 		}
+	}
+	public boolean is() {
+		return this.isTrace;
 	}
 	public void start() {
 		this.map.clear();
@@ -124,8 +127,8 @@ public class ConnectionManager {
 		this.isTrace = false;
 		this.map.clear();
 	}
-	public synchronized void clearInternal(int index) {
-		this.map.remove(new Integer(index));
+	private synchronized void clearInternal(int index) {
+		this.map.remove(Integer.valueOf(index));
 	}
 }
 
