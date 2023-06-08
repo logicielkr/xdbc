@@ -402,6 +402,7 @@ public final class ConnectionImpl implements Connection {
 	
 	
 	public void abort(java.util.concurrent.Executor arg0) throws java.sql.SQLException {
+		ConnectionManager.getInstance().clear(this.index);
 		if(cons != null) {
 			for(int i = 0; i < cons.length; i++) {
 				cons[i].abort(arg0);

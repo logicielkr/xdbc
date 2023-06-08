@@ -61,34 +61,40 @@ public class ConnectionManager {
 	}
 	public void trace(java.io.PrintStream out) {
 		Collection col = map.keySet();
-		Iterator it = col.iterator();
-		while(it.hasNext()) {
-			Integer key = (Integer)it.next();
-			StackTraceElement[] trace = (StackTraceElement[])this.map.get(key);
-			if(trace != null) {
-				for(int i = 0; i < trace.length; i++) {
-					out.println(trace[i]);
+		Integer[] list = (Integer[])col.toArray(new Integer[0]);
+		if(list != null) {
+			for(int x = 0; x < list.length; x++) {
+				if(list[x] != null) {
+					StackTraceElement[] trace = (StackTraceElement[])this.map.get(list[x]);
+					if(trace != null) {
+						for(int i = 0; i < trace.length; i++) {
+							out.println(trace[i]);
+						}
+						out.println();
+						out.println();
+						out.println();
+					}
 				}
-				out.println();
-				out.println();
-				out.println();
 			}
 		}
 	}
 	public void trace(java.io.Writer out) throws java.io.IOException {
 		Collection col = map.keySet();
-		Iterator it = col.iterator();
-		while(it.hasNext()) {
-			Integer key = (Integer)it.next();
-			StackTraceElement[] trace = (StackTraceElement[])this.map.get(key);
-			if(trace != null) {
-				for(int i = 0; i < trace.length; i++) {
-					out.write(trace[i].toString());
-					out.write("\n");
+		Integer[] list = (Integer[])col.toArray(new Integer[0]);
+		if(list != null) {
+			for(int x = 0; x < list.length; x++) {
+				if(list[x] != null) {
+					StackTraceElement[] trace = (StackTraceElement[])this.map.get(list[x]);
+					if(trace != null) {
+						for(int i = 0; i < trace.length; i++) {
+							out.write(trace[i].toString());
+							out.write("\n");
+						}
+						out.write("\n");
+						out.write("\n");
+						out.write("\n");
+					}
 				}
-				out.write("\n");
-				out.write("\n");
-				out.write("\n");
 			}
 		}
 	}
