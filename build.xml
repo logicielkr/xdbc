@@ -3,6 +3,10 @@
 	<property name = "src.dir" value = "${base.dir}/src"/>
 	<property name = "build.dir" value = "${base.dir}/bin"/>
 	<property name = "package.dir" value = "${base.dir}/package"/>
+	<property name = "build7.dir" value = "${build.dir}/java7"/>
+	<property name = "build8.dir" value = "${build.dir}/java8"/>
+	<property name = "xdbc.version" value = "0.3.0.0"/>
+	<property name = "javac1.8over" location="/usr/lib/jvm/java-8-openjdk-i386/bin/javac" />
 	<presetdef name="javac">
 		<javac includeantruntime="false" />
 	</presetdef>
@@ -13,31 +17,120 @@
 		</fileset>
 -->
 		<pathelement path = "${build.dir}"/>
-		<pathelement path = "/opt/java/lib/jdbc/derby.jar" />
-		<pathelement path = "/opt/java/lib/jdbc/h2-1.4.199.jar" />
-		<pathelement path = "/opt/java/lib/jdbc/hsqldb.jar" />
-		<pathelement path = "/opt/java/lib/jdbc/ojdbc8.jar" />
-		<pathelement path = "/opt/java/lib/jdbc/postgresql-42.0.0.jar" />
-		<pathelement path = "/opt/java/lib/jdbc/sqlite-jdbc-3.30.1.jar" />
-		<pathelement path = "/opt/java/lib/jdbc/mariadb-java-client-2.4.4.jar" />
 	</path>
 	<target name="depends">
 		<mkdir dir="${build.dir}" />
+		<mkdir dir="${build7.dir}" />
+		<mkdir dir="${build8.dir}" />
 	</target>
 	<target name="clean">
 		<delete dir="${build.dir}" />
 	</target>
-	<target name="compile" depends="depends">
-		<javac destdir = "${build.dir}" deprecation="true" debug="true" debuglevel="lines,vars,source" includeAntRuntime="false" optimize="true" nowarn="off" target="1.7" source="1.7">
-			<src path = "${src.dir}"/>
+	<target name="check_java_version">
+		<condition property="java_version_over_8">
+			<javaversion atleast="8" />
+		</condition>
+	</target>
+	<target name="check_java8_exists">
+		<condition property="exists_java_8">
+			<length file="${javac1.8over}" when="greater" length="0"/>
+		</condition>
+	</target>
+	
+	<target name="java8_over_8" depends="check_java_version" if="java_version_over_8">
+		<javac
+			destdir = "${build8.dir}"
+			deprecation="true"
+			debug="true"
+			debuglevel="lines,vars,source"
+			includeAntRuntime="false"
+			optimize="true"
+			nowarn="off" 
+			target="1.8" 
+			source="1.8"
+		>
+			<src path = "${src.dir}" />
+			
+			<include name="kr/xdbc/util/**/*.java" />
+			<include name="kr/xdbc/trace/**/*.java" />
+			<include name="kr/xdbc/servlet/**/*.java" />
+			<include name="kr/xdbc/java8/**/*.java" />
+			<include name="kr/xdbc/driver/GenericDriver.java" />
+			
 			<classpath refid = "master-classpath"/>
 		</javac>
 	</target>
+	<target name="java8_under_8" depends="check_java_version, java8_under_8_and_not_exists_javac, java8_under_8_and_exists_javac" unless="java_version_over_8" />
+	<target name="java8_under_8_and_not_exists_javac" depends="check_java8_exists" unless="exists_java_8">
+		<echo>check JAVA_HOME or javac1.8over property</echo>
+	</target>
+	<target name="java8_under_8_and_exists_javac" depends="check_java8_exists" if="exists_java_8">
+		<javac
+			destdir = "${build8.dir}"
+			deprecation="true"
+			debug="true"
+			debuglevel="lines,vars,source"
+			includeAntRuntime="false"
+			optimize="true"
+			nowarn="off" 
+			target="1.8" 
+			source="1.8"
+			executable="${javac1.8over}"
+			fork="yes"
+		>
+			<src path = "${src.dir}" />
+			
+			<include name="kr/xdbc/util/**/*.java" />
+			<include name="kr/xdbc/trace/**/*.java" />
+			<include name="kr/xdbc/servlet/**/*.java" />
+			<include name="kr/xdbc/java8/**/*.java" />
+			<include name="kr/xdbc/driver/GenericDriver.java" />
+			
+			<classpath refid = "master-classpath"/>
+		</javac>
+	</target>
+	<target name="java8" depends="depends, java8_under_8, java8_over_8" />
+	<target name="java7" depends="depends">
+		<javac
+			destdir = "${build7.dir}"
+			deprecation="true"
+			debug="true"
+			debuglevel="lines,vars,source"
+			includeAntRuntime="false"
+			optimize="true"
+			nowarn="off" 
+			target="1.7" 
+			source="1.7"
+		>
+			<src path = "${src.dir}" />
+			
+			<include name="kr/xdbc/util/**/*.java" />
+			<include name="kr/xdbc/trace/**/*.java" />
+			<include name="kr/xdbc/servlet/**/*.java" />
+			<include name="kr/xdbc/java7/**/*.java" />
+
+			<classpath refid = "master-classpath"/>
+		</javac>
+	</target>
+	<target name="compile" depends="java7, java8" />
 	<target name="package" depends="compile">
-		<jar destfile="${package.dir}/xdbc.0.2.0.3.jar">
-			<fileset dir="${build.dir}" includes="kr/**/*.class"/>
-			<fileset dir="${base.dir}" includes="README.md,LICENSE"/>
-			<fileset dir="${src.dir}" includes="kr/**/*.java, kr/**/*.xsl, kr/**/*.xml, kr/**/*.properties"/>
+		<jar destfile="${package.dir}/xdbc.java7.${xdbc.version}.jar">
+			<fileset dir="${build7.dir}" includes="kr/**/*.class"/>
+			<fileset dir="${base.dir}" includes="README.md,pom.xml,build.xml,LICENSE"/>
+			<fileset
+				dir="${src.dir}"
+				includes="kr/xdbc/util/**/*.java, kr/xdbc/trace/**/*.java, kr/xdbc/servlet/**/*.java, kr/xdbc/java7/**/*.java"
+				excludes="kr/xdbc/sql/*.java, kr/xdbc/driver/OracleDriver.java, kr/xdbc/driver/DerbyDriver.java, kr/xdbc/driver/HSQLDriver.java, kr/xdbc/driver/H2Driver.java, kr/xdbc/driver/SqliteDriver.java, kr/xdbc/driver/PostgreSQLDriver.java"
+			/>
+		</jar>
+		<jar destfile="${package.dir}/xdbc.java8.${xdbc.version}.jar">
+			<fileset dir="${build8.dir}" includes="kr/**/*.class"/>
+			<fileset dir="${base.dir}" includes="README.md,pom.xml,build.xml,LICENSE"/>
+			<fileset
+				dir="${src.dir}"
+				includes="kr/xdbc/util/**/*.java, kr/xdbc/trace/**/*.java, kr/xdbc/servlet/**/*.java, kr/xdbc/java8/**/*.java, kr/xdbc/driver/GenericDriver.java"
+				excludes="kr/xdbc/sql/*.java, kr/xdbc/driver/OracleDriver.java, kr/xdbc/driver/DerbyDriver.java, kr/xdbc/driver/HSQLDriver.java, kr/xdbc/driver/H2Driver.java, kr/xdbc/driver/SqliteDriver.java, kr/xdbc/driver/PostgreSQLDriver.java"
+			/>
 		</jar>
 	</target>
 </project>

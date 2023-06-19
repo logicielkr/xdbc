@@ -26,7 +26,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 import java.sql.SQLFeatureNotSupportedException;
 import java.util.logging.Logger;
-import kr.xdbc.java8.sql.ConnectionImpl;
+import kr.xdbc.java7.sql.ConnectionImpl;
 import kr.xdbc.util.StringUtil;
 import kr.xdbc.util.DBUtil;
 import java.util.Properties;
@@ -35,8 +35,8 @@ import java.sql.DriverPropertyInfo;
 import java.sql.Driver;
 
 /**
- * GenericDriver Wrapper for Java 8
- * Java 7 은 ../java7/driver 에 있다.
+ * GenericDriver Wrapper for Java 7
+
  * @author HeonJik, KIM
  * @version 0.3
  * @since 0.1
