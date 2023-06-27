@@ -42,10 +42,10 @@ public class ConnectionManagerListener implements ServletContextListener {
 	private Logger logger = Logger.getLogger(this.getClass().getName());
 	public void contextInitialized(ServletContextEvent sce) {
 		if(!kr.xdbc.trace.ConnectionManager.getInstance().is()) {
-			if(logger.isLoggable(Level.FINE)) { logger.fine("kr.xdbc.trace.ConnectionManager now start"); }
+			if(logger.isLoggable(Level.FINER)) { logger.finer("kr.xdbc.trace.ConnectionManager now start"); }
 			kr.xdbc.trace.ConnectionManager.getInstance().start();
 		} else {
-			if(logger.isLoggable(Level.FINE)) { logger.fine("kr.xdbc.trace.ConnectionManager already started"); }
+			if(logger.isLoggable(Level.FINER)) { logger.finer("kr.xdbc.trace.ConnectionManager already started"); }
 		}
 	}
 	public void contextDestroyed(ServletContextEvent sce) {

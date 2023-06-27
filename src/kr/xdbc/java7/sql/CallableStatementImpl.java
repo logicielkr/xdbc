@@ -1098,18 +1098,18 @@ public class CallableStatementImpl implements CallableStatement {
 	}
 /**
  * Statement 가 여러 개인 경우 첫 번째 것을 실행하고 반환받은 ResultSet 을 ResultSetImpl 로 감싸서 반환한다.
- * 실행한 sql 을 Level.FINE 로그로 남긴다.
+ * 실행한 sql 을 Level.FINER 로그로 남긴다.
  * SQLException이 발생한 경우 실패한 sql 을 Level.SEVERE 로그로 남긴다.
  */
 	public ResultSet executeQuery() throws SQLException {
 		try {
 			if(this.cstmts != null) {
 				ResultSet rs = new ResultSetImpl(this, this.cstmts[0].executeQuery(), true);
-				if(logger.isLoggable(Level.FINE)) { logger.fine(this.getQueryString()); }
+				if(logger.isLoggable(Level.FINER)) { logger.finer(this.getQueryString()); }
 				return rs;
 			} else {
 				ResultSet rs = new ResultSetImpl(this, this.cstmt.executeQuery(), false);
-				if(logger.isLoggable(Level.FINE)) { logger.fine(this.getQueryString()); }
+				if(logger.isLoggable(Level.FINER)) { logger.finer(this.getQueryString()); }
 				return rs;
 			}
 		} catch (SQLException e) {
@@ -1119,7 +1119,7 @@ public class CallableStatementImpl implements CallableStatement {
 	}
 /**
  * Statement 가 여러 개인 경우 순차적으로 실행하고, 마지막 실행결과를 반환한다.
- * 실행한 sql 을 Level.FINE 로그로 남긴다.
+ * 실행한 sql 을 Level.FINER 로그로 남긴다.
  * SQLException이 발생한 경우 실패한 sql 을 Level.SEVERE 로그로 남긴다.
  */
 	public int executeUpdate() throws SQLException {
@@ -1132,7 +1132,7 @@ public class CallableStatementImpl implements CallableStatement {
 			} else {
 				result = this.cstmt.executeUpdate();
 			}
-			if(logger.isLoggable(Level.FINE)) { logger.fine(this.getQueryString()); }
+			if(logger.isLoggable(Level.FINER)) { logger.finer(this.getQueryString()); }
 			return result;
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(this.getQueryString()); }
@@ -1345,7 +1345,7 @@ public class CallableStatementImpl implements CallableStatement {
 	}
 /**
  * Statement 가 여러 개인 경우 순차적으로 실행하고, 마지막 실행결과를 반환한다.
- * 실행한 sql 을 Level.FINE 로그로 남긴다.
+ * 실행한 sql 을 Level.FINER 로그로 남긴다.
  * SQLException이 발생한 경우 실패한 sql 을 Level.SEVERE 로그로 남긴다.
  */
 	public boolean execute() throws SQLException {
@@ -1358,7 +1358,7 @@ public class CallableStatementImpl implements CallableStatement {
 			} else {
 				issucess = this.cstmt.execute();
 			}
-			if(logger.isLoggable(Level.FINE)) { logger.fine(this.getQueryString()); }
+			if(logger.isLoggable(Level.FINER)) { logger.finer(this.getQueryString()); }
 			return issucess;
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(this.getQueryString()); }
@@ -1367,7 +1367,7 @@ public class CallableStatementImpl implements CallableStatement {
 	}
 /**
  * Statement 가 여러 개인 경우 순차적으로 실행한다.
- * 실행한 sql 을 Level.FINE 로그로 남긴다.
+ * 실행한 sql 을 Level.FINER 로그로 남긴다.
  * SQLException이 발생한 경우 실패한 sql 을 Level.SEVERE 로그로 남긴다.
  */
 	public void addBatch() throws SQLException {
@@ -1379,7 +1379,7 @@ public class CallableStatementImpl implements CallableStatement {
 			} else {
 				this.cstmt.addBatch();
 			}
-			if(logger.isLoggable(Level.FINE)) { logger.fine(this.getQueryString()); }
+			if(logger.isLoggable(Level.FINER)) { logger.finer(this.getQueryString()); }
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(this.getQueryString()); }
 			throw e;
@@ -1691,18 +1691,18 @@ public class CallableStatementImpl implements CallableStatement {
 	}
 /**
  * Statement 가 여러 개인 경우 첫 번째 것을 실행하고 반환받은 ResultSet 을 ResultSetImpl 로 감싸서 반환한다.
- * 실행한 sql 을 Level.FINE 로그로 남긴다.
+ * 실행한 sql 을 Level.FINER 로그로 남긴다.
  * SQLException이 발생한 경우 실패한 sql 을 Level.SEVERE 로그로 남긴다.
  */
 	public ResultSet executeQuery(String sql) throws SQLException {
 		try {
 			if(this.cstmts != null) {
 				ResultSet rs = new ResultSetImpl(this, this.cstmts[0].executeQuery(sql), true);
-				if(logger.isLoggable(Level.FINE)) { logger.fine(sql); }
+				if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
 				return rs;
 			} else {
 				ResultSet rs = new ResultSetImpl(this, this.cstmt.executeQuery(sql), false);
-				if(logger.isLoggable(Level.FINE)) { logger.fine(sql); }
+				if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
 				return rs;
 			}
 		} catch (SQLException e) {
@@ -1712,7 +1712,7 @@ public class CallableStatementImpl implements CallableStatement {
 	}
 /**
  * Statement 가 여러 개인 경우 순차적으로 실행하고, 마지막 실행결과를 반환한다.
- * 실행한 sql 을 Level.FINE 로그로 남긴다.
+ * 실행한 sql 을 Level.FINER 로그로 남긴다.
  * SQLException이 발생한 경우 실패한 sql 을 Level.SEVERE 로그로 남긴다.
  */
 	public int executeUpdate(String sql) throws SQLException {
@@ -1722,11 +1722,11 @@ public class CallableStatementImpl implements CallableStatement {
 				for(int i = 0; i < this.cstmts.length; i++) {
 					result = this.cstmts[i].executeUpdate(sql);
 				}
-				if(logger.isLoggable(Level.FINE)) { logger.fine(sql); }
+				if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
 				return result;
 			} else {
 				int result = this.cstmt.executeUpdate(sql);
-				if(logger.isLoggable(Level.FINE)) { logger.fine(sql); }
+				if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
 				return result;
 			}
 		} catch (SQLException e) {
@@ -1841,7 +1841,7 @@ public class CallableStatementImpl implements CallableStatement {
 	}
 /**
  * Statement 가 여러 개인 경우 순차적으로 실행하고, 마지막 실행결과를 반환한다.
- * 실행한 sql 을 Level.FINE 로그로 남긴다.
+ * 실행한 sql 을 Level.FINER 로그로 남긴다.
  * SQLException이 발생한 경우 실패한 sql 을 Level.SEVERE 로그로 남긴다.
  */
 	public boolean execute(String sql) throws SQLException {
@@ -1854,7 +1854,7 @@ public class CallableStatementImpl implements CallableStatement {
 			} else {
 				issucess = this.cstmt.execute(sql);
 			}
-			if(logger.isLoggable(Level.FINE)) { logger.fine(sql); }
+			if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
 			return issucess;
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(sql); }
@@ -1933,7 +1933,7 @@ public class CallableStatementImpl implements CallableStatement {
 	}
 /**
  * Statement 가 여러 개인 경우 순차적으로 실행한다.
- * 실행한 sql 을 Level.FINE 로그로 남긴다.
+ * 실행한 sql 을 Level.FINER 로그로 남긴다.
  * SQLException이 발생한 경우 실패한 sql 을 Level.SEVERE 로그로 남긴다.
  */
 	public void addBatch(String sql) throws SQLException {
@@ -1945,7 +1945,7 @@ public class CallableStatementImpl implements CallableStatement {
 			} else {
 				this.cstmt.addBatch(sql);
 			}
-			if(logger.isLoggable(Level.FINE)) { logger.fine(sql); }
+			if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(sql); }
 			throw e;
@@ -1996,7 +1996,7 @@ public class CallableStatementImpl implements CallableStatement {
 	}
 /**
  * Statement 가 여러 개인 경우 순차적으로 실행하고, 마지막 실행결과를 반환한다.
- * 실행한 sql 을 Level.FINE 로그로 남긴다.
+ * 실행한 sql 을 Level.FINER 로그로 남긴다.
  * SQLException이 발생한 경우 실패한 sql 을 Level.SEVERE 로그로 남긴다.
  */
 	public int executeUpdate(String sql, int autoGeneratedKeys) throws SQLException {
@@ -2009,7 +2009,7 @@ public class CallableStatementImpl implements CallableStatement {
 			} else {
 				result = this.cstmt.executeUpdate(sql, autoGeneratedKeys);
 			}
-			if(logger.isLoggable(Level.FINE)) { logger.fine(sql); }
+			if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
 			return result;
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(sql); }
@@ -2018,7 +2018,7 @@ public class CallableStatementImpl implements CallableStatement {
 	}
 /**
  * Statement 가 여러 개인 경우 순차적으로 실행하고, 마지막 실행결과를 반환한다.
- * 실행한 sql 을 Level.FINE 로그로 남긴다.
+ * 실행한 sql 을 Level.FINER 로그로 남긴다.
  * SQLException이 발생한 경우 실패한 sql 을 Level.SEVERE 로그로 남긴다.
  */
 	public int executeUpdate(String sql, int[] columnIndexes) throws SQLException {
@@ -2031,7 +2031,7 @@ public class CallableStatementImpl implements CallableStatement {
 			} else {
 				result = this.cstmt.executeUpdate(sql, columnIndexes);
 			}
-			if(logger.isLoggable(Level.FINE)) { logger.fine(sql); }
+			if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
 			return result;
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(sql); }
@@ -2040,7 +2040,7 @@ public class CallableStatementImpl implements CallableStatement {
 	}
 /**
  * Statement 가 여러 개인 경우 순차적으로 실행하고, 마지막 실행결과를 반환한다.
- * 실행한 sql 을 Level.FINE 로그로 남긴다.
+ * 실행한 sql 을 Level.FINER 로그로 남긴다.
  * SQLException이 발생한 경우 실패한 sql 을 Level.SEVERE 로그로 남긴다.
  */
 	public int executeUpdate(String sql, String[] columnNames) throws SQLException {
@@ -2053,7 +2053,7 @@ public class CallableStatementImpl implements CallableStatement {
 			} else {
 			result = this.cstmt.executeUpdate(sql, columnNames);
 			}
-			if(logger.isLoggable(Level.FINE)) { logger.fine(sql); }
+			if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
 			return result;
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(sql); }
@@ -2062,7 +2062,7 @@ public class CallableStatementImpl implements CallableStatement {
 	}
 /**
  * Statement 가 여러 개인 경우 순차적으로 실행하고, 마지막 실행결과를 반환한다.
- * 실행한 sql 을 Level.FINE 로그로 남긴다.
+ * 실행한 sql 을 Level.FINER 로그로 남긴다.
  * SQLException이 발생한 경우 실패한 sql 을 Level.SEVERE 로그로 남긴다.
  */
 	public boolean execute(String sql, int autoGeneratedKeys) throws SQLException {
@@ -2075,7 +2075,7 @@ public class CallableStatementImpl implements CallableStatement {
 			} else {
 				issucess = this.cstmt.execute(sql, autoGeneratedKeys);
 			}
-			if(logger.isLoggable(Level.FINE)) { logger.fine(sql); }
+			if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
 			return issucess;
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(sql); }
@@ -2084,7 +2084,7 @@ public class CallableStatementImpl implements CallableStatement {
 	}
 /**
  * Statement 가 여러 개인 경우 순차적으로 실행하고, 마지막 실행결과를 반환한다.
- * 실행한 sql 을 Level.FINE 로그로 남긴다.
+ * 실행한 sql 을 Level.FINER 로그로 남긴다.
  * SQLException이 발생한 경우 실패한 sql 을 Level.SEVERE 로그로 남긴다.
  */
 	public boolean execute(String sql, int[] columnIndexes) throws SQLException {
@@ -2097,7 +2097,7 @@ public class CallableStatementImpl implements CallableStatement {
 			} else {
 				issucess = this.cstmt.execute(sql, columnIndexes);
 			}
-			if(logger.isLoggable(Level.FINE)) { logger.fine(sql); }
+			if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
 			return issucess;
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(sql); }
@@ -2106,7 +2106,7 @@ public class CallableStatementImpl implements CallableStatement {
 	}
 /**
  * Statement 가 여러 개인 경우 순차적으로 실행하고, 마지막 실행결과를 반환한다.
- * 실행한 sql 을 Level.FINE 로그로 남긴다.
+ * 실행한 sql 을 Level.FINER 로그로 남긴다.
  * SQLException이 발생한 경우 실패한 sql 을 Level.SEVERE 로그로 남긴다.
  */
 	public boolean execute(String sql, String[] columnNames) throws SQLException {
@@ -2119,7 +2119,7 @@ public class CallableStatementImpl implements CallableStatement {
 			} else {
 				issucess = this.cstmt.execute(sql, columnNames);
 			}
-			if(logger.isLoggable(Level.FINE)) { logger.fine(sql); }
+			if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
 			return issucess;
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(sql); }
