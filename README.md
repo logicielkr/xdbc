@@ -2,7 +2,7 @@
 
 ## 1. about
 
-jdbc의 몇 가지 확장 기능을 제공한다.
+JDBC의 몇 가지 확장 기능을 제공한다.
 
 ### 1.1. xdbc의 기능
 
@@ -22,7 +22,7 @@ jdbc의 몇 가지 확장 기능을 제공한다.
 
 ### 1.3. 제한
 
-* xdbc는 단독으로 사용할 수 없고, 각각의 JDBC 드라이버가 있어야 한다.
+* xdbc는 단독으로 사용할 수 없고, 연결하려는 데이타베이스의 JDBC 드라이버가 있어야 한다.
 
 ### 1.4. 배포하는 곳
 
@@ -65,7 +65,7 @@ con.close();
 * 로깅에 사용된 API : java.util.logging.Logger
 * SQL 실행에 성공한 경우 : Level.FINE
 * SQL 실행에 실패한 경우 : Level.SEVERE
-* 제한 : PreparedStatement와 Statement 만 로깅
+* PreparedStatement와 CallableStatement 는 바인딩한 변수가 치환된 sql 을, Statement 는 일반 sql 을 로그에 남긴다.
 
 #### 2.2.1. 전역설정 (시스템 전체에 반영시키는 방법)
 
@@ -76,7 +76,7 @@ $JAVA_HOME/jre/lib/logging.properties 파일을 약간 수정한다.
 java.util.logging.ConsoleHandler.level = FINE
 ```
 
-Apache Ant의 java task 를 사용하는 경우 다음과 같은 내용을 추가한다.
+Apache Ant의 java task 를 사용하는 경우 다음과 같은 내용도 추가한다.
 
 ```properties
 java.level = WARNING
@@ -116,10 +116,15 @@ java -Djava.util.logging.config.file=logging.properties YourClassName
 
 #### 2.2.5. Apache Tomcat의 경우
 
-첫 번째 줄은 ALL 혹은 FINE 로 변경한다.
+첫 번째 줄은 ALL 혹은 FINE 으로 변경한다.
 
 ```properties
 java.util.logging.ConsoleHandler.level = ALL
+```
+
+마지막 부분에 다음과 같은 내용을 추가한다.
+
+```properties
 kr.xdbc.level = FINE
 ```
 
@@ -131,15 +136,17 @@ xdbc:jdbc:postgresql://192.168.2.2/memo|jdbc:postgresql://192.168.2.3/memo2
 ```
 
 #### 2.3.1. 기능의 특징
-* 클러스터링 같은 성격이 아니라, 단순하게 실시간으로 데이타 사본을 생성하는 기능이다.
-* executeUpdate와 같은 것들은 모든 데이타베이스에 실행한다.
+* 클러스터링 같은 성격이 아니라, 단순히 실시간으로 데이타 사본을 생성하는 기능이다.
+* executeUpdate, execute 와 같은 것들은 모든 데이타베이스에 실행한다.
 * ResultSet을 가져오는 것은 첫 번째 연결만 사용한다.
 * 사용자 이름, 패스워드는 동일해야 한다.
-* 데이타베이스의 물리적 구조가 완벽하게 동일할 필요까지는 없고, 동일한 sql이 실행될 수 있으면 된다.
+* executeUpdate, execute 을 통해 실행되는 sql이 다른 데이타베이스에서도 실행될 수 있다면, 데이타베이스의 물리적 구조가 완벽하게 동일할 필요도 없고, 심지어 이기종 데이타베이스도 상관없다.
 
 ### 2.4. 현재 열려있는 데이타베이스 연결을 확인하는 방법(StackTrace 확인)
 
-다음의 객체가 생성되면 StackTrace를 저장했다가, close 메소드가 호출되면 이를 삭제함으로서, 일정 시점에 현재 실행중인 StackTrace를 확인할 수 있고, 이를 통해 실수로 close 메소드 호출이 누락된 코드를 찾을 수 있다. 
+데이타베이스 연결이나 커서를 열면, 그 당시의 StackTrace를 저장했다가, close 메소드가 호출되면 이를 삭제함으로서, 일정 시점에 현재 실행중인 StackTrace를 확인할 수 있고, 이를 통해 실수로 close 메소드 호출이 누락된 코드를 찾을 수 있다. 
+
+관리되는 class 는 다음과 같다.
 
 * java.sql.Connection
 * java.sql.CallableStatement
@@ -151,6 +158,14 @@ xdbc:jdbc:postgresql://192.168.2.2/memo|jdbc:postgresql://192.168.2.3/memo2
 
 ```java
 kr.xdbc.trace.ConnectionManager.getInstance().start();
+```
+
+web.xml 에 다음과 같은 내용을 추가하면, context 가 초기화 될 때, trace 를 자동으로 시작한다.
+
+```xml
+<listener>
+	<listener-class>kr.xdbc.servlet.ConnectionManagerListener</listener-class>
+</listener>
 ```
 
 trace 모드를 비활성화시키기 위해서는 다음과 같이 한다.
@@ -185,12 +200,12 @@ kr.xdbc.trace.ConnectionManager.getInstance().trace(out);
 
 ### 3.1. 현재 열려있는 데이타베이스 연결을 확인하는 기능에서 알려진 문제
 
-* Connection Pool을 사용하는 경우 Connection 객체가 반납되지 않기 때문에 StackTrace 가 출력됨.
+* Connection Pool을 사용하는 경우 Connection의 close 메소드가 호출되지 않기 때문에 StackTrace 가 출력됨.
 * 이건 개선 할 방법이 없다.
 
 ### 3.2. 2개 이상의 데이타베이스에 복제본을 만드는 기능에서 알려진 문제 혹은 주의사항
 
-* ResultSet을 반환하는 구문에서 데이타베이스 트랜젝션이 발생하는 경우, 첫 번째 연결에서만 반영된다.
+* sequence 의 다음 값을 가져오거나 하는 등 ResultSet을 반환하지만 데이타베이스 내에서 트랜젝션이 발생하는 경우, 첫 번째 연결에서만 반영된다.
 * 비상대책에는 sequence를 동기화하는 등 이에 대한 고려가 있어야 한다.
 * sequence 이름을 정하는 특별한 규칙이 있는 경우, 예를 들어 Graha Manager에서와 같이 {TABLE_NAME}${COLUMN_NAME}과 같은 형식으로 테이블 이름과 컬럼 이름 사이에 $를 넣는 형식으로 sequence를 만드는 경우 PostgreSQL에서는 다음과 같은 sql 구문을 실행하면 된다.
 
@@ -221,7 +236,7 @@ END $$;
 ### 3.3. fail-over, load balancing 같은 것 지원하지 않음.
 
 * 이건 개선할 생각이 없다.
-* load balancing은 ResultSet 객체를 가져오는 것과 관련이 있는데, 응용프로그램 개발에 새롭고 중요한 제약사항을 발생시키게 된다.
+* load balancing은 ResultSet 객체를 가져오는 것과 관련이 있는데, 응용프로그램을 개발 하는데 새로운 제약을 만들게 된다.
 * fail-over의 경우 파일시스템에 트랜젝션 이력을 남겨야 하고, 더 중요한 것은 첫 번째 서버가 죽은 경우 두 번째 서버로 자동으로 넘기는 일은 load balancing 과 관련된 이슈를 포함한다.
 * 두 번째 데이타베이스는 단지 첫 번째 데이타베이스의 파일시스템이 깨지는 경우와 같이 특별한 비상상황을 위한 것이다.
 * 현실적으로 운영중인 데이타베이스 중 1대가 죽는다면 서비스 중단을 감수해야 하고, 비상대책을 잘 만들어서 서비스 중단 시간을 최소화해야 한다.
@@ -235,3 +250,4 @@ END $$;
 try { Class.forName("org.h2.Driver");} catch(ClassNotFoundException e) {}
 ```
 
+> kr.xdbc.driver.GenericDriver 는 Java 7 을 위한 것과 Java 8 을 위한 것다는 사실에 주의하라.
