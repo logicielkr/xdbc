@@ -147,12 +147,34 @@ public final class PreparedStatementImpl implements PreparedStatement {
 	public ResultSet executeQuery() throws SQLException {
 		try {
 			if(this.pstmts != null) {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 				ResultSet rs = new ResultSetImpl(this, this.pstmts[0].executeQuery(), true);
-				if(logger.isLoggable(Level.FINER)) { logger.finer(this.getQueryString()); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + this.getQueryString());
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(this.getQueryString());
+}
+
 				return rs;
 			} else {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 				ResultSet rs = new ResultSetImpl(this, this.pstmt.executeQuery(), false);
-				if(logger.isLoggable(Level.FINER)) { logger.finer(this.getQueryString()); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + this.getQueryString());
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(this.getQueryString());
+}
+
 				return rs;
 			}
 		} catch (SQLException e) {
@@ -167,6 +189,11 @@ public final class PreparedStatementImpl implements PreparedStatement {
  */
 	public int executeUpdate() throws SQLException {
 		try {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 			int result = 0;
 			if(this.pstmts != null) {
 				for(int i = 0; i < this.pstmts.length; i++) {
@@ -175,7 +202,13 @@ public final class PreparedStatementImpl implements PreparedStatement {
 			} else {
 				result = this.pstmt.executeUpdate();
 			}
-			if(logger.isLoggable(Level.FINER)) { logger.finer(this.getQueryString()); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + this.getQueryString());
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(this.getQueryString());
+}
+
 			return result;
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(this.getQueryString()); }
@@ -393,6 +426,11 @@ public final class PreparedStatementImpl implements PreparedStatement {
  */
 	public boolean execute() throws SQLException {
 		try {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 			boolean issucess = false;
 			if(this.pstmts != null) {
 				for(int i = 0; i < this.pstmts.length; i++) {
@@ -401,7 +439,13 @@ public final class PreparedStatementImpl implements PreparedStatement {
 			} else {
 				issucess = this.pstmt.execute();
 			}
-			if(logger.isLoggable(Level.FINER)) { logger.finer(this.getQueryString()); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + this.getQueryString());
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(this.getQueryString());
+}
+
 			return issucess;
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(this.getQueryString()); }
@@ -415,6 +459,11 @@ public final class PreparedStatementImpl implements PreparedStatement {
  */
 	public void addBatch() throws SQLException {
 		try {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 			if(this.pstmts != null) {
 				for(int i = 0; i < this.pstmts.length; i++) {
 					this.pstmts[i].addBatch();
@@ -422,7 +471,13 @@ public final class PreparedStatementImpl implements PreparedStatement {
 			} else {
 				this.pstmt.addBatch();
 			}
-			if(logger.isLoggable(Level.FINER)) { logger.finer(this.getQueryString()); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + this.getQueryString());
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(this.getQueryString());
+}
+
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(this.getQueryString()); }
 			throw e;
@@ -757,6 +812,11 @@ public final class PreparedStatementImpl implements PreparedStatement {
 @Override
 	public long executeLargeUpdate() throws SQLException {
 		try {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 			long result = 0;
 			if(this.pstmts != null) {
 				for(int i = 0; i < this.pstmts.length; i++) {
@@ -765,7 +825,13 @@ public final class PreparedStatementImpl implements PreparedStatement {
 			} else {
 				result = this.pstmt.executeLargeUpdate();
 			}
-			if(logger.isLoggable(Level.FINER)) { logger.finer(this.getQueryString()); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + this.getQueryString());
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(this.getQueryString());
+}
+
 			return result;
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(this.getQueryString()); }
@@ -780,12 +846,32 @@ public final class PreparedStatementImpl implements PreparedStatement {
 	public ResultSet executeQuery(String sql) throws SQLException {
 		try {
 			if(this.pstmts != null) {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 				ResultSet rs = new ResultSetImpl(this, this.pstmts[0].executeQuery(sql), true);
-				if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + sql);
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(sql);
+}
 				return rs;
 			} else {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 				ResultSet rs = new ResultSetImpl(this, this.pstmt.executeQuery(sql), false);
-				if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + sql);
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(sql);
+}
 				return rs;
 			}
 		} catch (SQLException e) {
@@ -801,15 +887,35 @@ public final class PreparedStatementImpl implements PreparedStatement {
 	public int executeUpdate(String sql) throws SQLException {
 		try {
 			if(this.pstmts != null) {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 				int result = 0;
 				for(int i = 0; i < this.pstmts.length; i++) {
 					result = this.pstmts[i].executeUpdate(sql);
 				}
-				if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + sql);
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(sql);
+}
 				return result;
 			} else {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 				int result = this.pstmt.executeUpdate(sql);
-				if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + sql);
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(sql);
+}
 				return result;
 			}
 		} catch (SQLException e) {
@@ -929,6 +1035,11 @@ public final class PreparedStatementImpl implements PreparedStatement {
  */
 	public boolean execute(String sql) throws SQLException {
 		try {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 			boolean issucess = false;
 			if(this.pstmts != null) {
 				for(int i = 0; i < this.pstmts.length; i++) {
@@ -937,7 +1048,12 @@ public final class PreparedStatementImpl implements PreparedStatement {
 			} else {
 				issucess = this.pstmt.execute(sql);
 			}
-			if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + sql);
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(sql);
+}
 			return issucess;
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(sql); }
@@ -1021,6 +1137,11 @@ public final class PreparedStatementImpl implements PreparedStatement {
  */
 	public void addBatch(String sql) throws SQLException {
 		try {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 			if(this.pstmts != null) {
 				for(int i = 0; i < this.pstmts.length; i++) {
 					this.pstmts[i].addBatch(sql);
@@ -1028,7 +1149,12 @@ public final class PreparedStatementImpl implements PreparedStatement {
 			} else {
 				this.pstmt.addBatch(sql);
 			}
-			if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + sql);
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(sql);
+}
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(sql); }
 			throw e;
@@ -1084,6 +1210,11 @@ public final class PreparedStatementImpl implements PreparedStatement {
  */
 	public int executeUpdate(String sql, int autoGeneratedKeys) throws SQLException {
 		try {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 			int result = 0;
 			if(this.pstmts != null) {
 				for(int i = 0; i < this.pstmts.length; i++) {
@@ -1092,7 +1223,12 @@ public final class PreparedStatementImpl implements PreparedStatement {
 			} else {
 				result = this.pstmt.executeUpdate(sql, autoGeneratedKeys);
 			}
-			if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + sql);
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(sql);
+}
 			return result;
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(sql); }
@@ -1106,6 +1242,11 @@ public final class PreparedStatementImpl implements PreparedStatement {
  */
 	public int executeUpdate(String sql, int[] columnIndexes) throws SQLException {
 		try {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 			int result = 0;
 			if(this.pstmts != null) {
 				for(int i = 0; i < this.pstmts.length; i++) {
@@ -1114,7 +1255,12 @@ public final class PreparedStatementImpl implements PreparedStatement {
 			} else {
 				result = this.pstmt.executeUpdate(sql, columnIndexes);
 			}
-			if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + sql);
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(sql);
+}
 			return result;
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(sql); }
@@ -1128,6 +1274,11 @@ public final class PreparedStatementImpl implements PreparedStatement {
  */
 	public int executeUpdate(String sql, String[] columnNames) throws SQLException {
 		try {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 			int result = 0;
 			if(this.pstmts != null) {
 				for(int i = 0; i < this.pstmts.length; i++) {
@@ -1136,7 +1287,12 @@ public final class PreparedStatementImpl implements PreparedStatement {
 			} else {
 			result = this.pstmt.executeUpdate(sql, columnNames);
 			}
-			if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + sql);
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(sql);
+}
 			return result;
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(sql); }
@@ -1150,6 +1306,11 @@ public final class PreparedStatementImpl implements PreparedStatement {
  */
 	public boolean execute(String sql, int autoGeneratedKeys) throws SQLException {
 		try {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 			boolean issucess = false;
 			if(this.pstmts != null) {
 				for(int i = 0; i < this.pstmts.length; i++) {
@@ -1158,7 +1319,12 @@ public final class PreparedStatementImpl implements PreparedStatement {
 			} else {
 				issucess = this.pstmt.execute(sql, autoGeneratedKeys);
 			}
-			if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + sql);
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(sql);
+}
 			return issucess;
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(sql); }
@@ -1172,6 +1338,11 @@ public final class PreparedStatementImpl implements PreparedStatement {
  */
 	public boolean execute(String sql, int[] columnIndexes) throws SQLException {
 		try {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 			boolean issucess = false;
 			if(this.pstmts != null) {
 				for(int i = 0; i < this.pstmts.length; i++) {
@@ -1180,7 +1351,12 @@ public final class PreparedStatementImpl implements PreparedStatement {
 			} else {
 				issucess = this.pstmt.execute(sql, columnIndexes);
 			}
-			if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + sql);
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(sql);
+}
 			return issucess;
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(sql); }
@@ -1194,6 +1370,11 @@ public final class PreparedStatementImpl implements PreparedStatement {
  */
 	public boolean execute(String sql, String[] columnNames) throws SQLException {
 		try {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 			boolean issucess = false;
 			if(this.pstmts != null) {
 				for(int i = 0; i < this.pstmts.length; i++) {
@@ -1202,7 +1383,12 @@ public final class PreparedStatementImpl implements PreparedStatement {
 			} else {
 				issucess = this.pstmt.execute(sql, columnNames);
 			}
-			if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + sql);
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(sql);
+}
 			return issucess;
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(sql); }
@@ -1313,6 +1499,11 @@ public final class PreparedStatementImpl implements PreparedStatement {
 @Override
 	public long executeLargeUpdate(String sql) throws SQLException {
 		try {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 			long result = 0;
 			if(this.pstmts != null) {
 				for(int i = 0; i < this.pstmts.length; i++) {
@@ -1321,7 +1512,12 @@ public final class PreparedStatementImpl implements PreparedStatement {
 			} else {
 				result = this.pstmt.executeLargeUpdate(sql);
 			}
-			if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + sql);
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(sql);
+}
 			return result;
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(sql); }
@@ -1336,6 +1532,11 @@ public final class PreparedStatementImpl implements PreparedStatement {
 @Override
 	public long executeLargeUpdate(String sql, int autoGeneratedKeys) throws SQLException {
 		try {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 			long result = 0;
 			if(this.pstmts != null) {
 				for(int i = 0; i < this.pstmts.length; i++) {
@@ -1344,7 +1545,12 @@ public final class PreparedStatementImpl implements PreparedStatement {
 			} else {
 				result = this.pstmt.executeLargeUpdate(sql, autoGeneratedKeys);
 			}
-			if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + sql);
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(sql);
+}
 			return result;
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(sql); }
@@ -1359,6 +1565,11 @@ public final class PreparedStatementImpl implements PreparedStatement {
 @Override
 	public long executeLargeUpdate(String sql, int[] columnIndexes) throws SQLException {
 		try {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 			long result = 0;
 			if(this.pstmts != null) {
 				for(int i = 0; i < this.pstmts.length; i++) {
@@ -1367,7 +1578,12 @@ public final class PreparedStatementImpl implements PreparedStatement {
 			} else {
 				result = this.pstmt.executeLargeUpdate(sql, columnIndexes);
 			}
-			if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + sql);
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(sql);
+}
 			return result;
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(sql); }
@@ -1382,6 +1598,11 @@ public final class PreparedStatementImpl implements PreparedStatement {
 @Override
 	public long executeLargeUpdate(String sql, String[] columnNames) throws SQLException {
 		try {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 			long result = 0;
 			if(this.pstmts != null) {
 				for(int i = 0; i < this.pstmts.length; i++) {
@@ -1390,7 +1611,12 @@ public final class PreparedStatementImpl implements PreparedStatement {
 			} else {
 			result = this.pstmt.executeLargeUpdate(sql, columnNames);
 			}
-			if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + sql);
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(sql);
+}
 			return result;
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(sql); }

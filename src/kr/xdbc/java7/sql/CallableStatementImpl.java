@@ -1104,12 +1104,33 @@ public class CallableStatementImpl implements CallableStatement {
 	public ResultSet executeQuery() throws SQLException {
 		try {
 			if(this.cstmts != null) {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 				ResultSet rs = new ResultSetImpl(this, this.cstmts[0].executeQuery(), true);
-				if(logger.isLoggable(Level.FINER)) { logger.finer(this.getQueryString()); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + this.getQueryString());
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(this.getQueryString());
+}
+
 				return rs;
 			} else {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 				ResultSet rs = new ResultSetImpl(this, this.cstmt.executeQuery(), false);
-				if(logger.isLoggable(Level.FINER)) { logger.finer(this.getQueryString()); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + this.getQueryString());
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(this.getQueryString());
+}
 				return rs;
 			}
 		} catch (SQLException e) {
@@ -1124,6 +1145,11 @@ public class CallableStatementImpl implements CallableStatement {
  */
 	public int executeUpdate() throws SQLException {
 		try {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 			int result = 0;
 			if(this.cstmts != null) {
 				for(int i = 0; i < this.cstmts.length; i++) {
@@ -1132,7 +1158,13 @@ public class CallableStatementImpl implements CallableStatement {
 			} else {
 				result = this.cstmt.executeUpdate();
 			}
-			if(logger.isLoggable(Level.FINER)) { logger.finer(this.getQueryString()); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + this.getQueryString());
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(this.getQueryString());
+}
+
 			return result;
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(this.getQueryString()); }
@@ -1350,6 +1382,11 @@ public class CallableStatementImpl implements CallableStatement {
  */
 	public boolean execute() throws SQLException {
 		try {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 			boolean issucess = false;
 			if(this.cstmts != null) {
 				for(int i = 0; i < this.cstmts.length; i++) {
@@ -1358,7 +1395,13 @@ public class CallableStatementImpl implements CallableStatement {
 			} else {
 				issucess = this.cstmt.execute();
 			}
-			if(logger.isLoggable(Level.FINER)) { logger.finer(this.getQueryString()); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + this.getQueryString());
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(this.getQueryString());
+}
+
 			return issucess;
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(this.getQueryString()); }
@@ -1372,6 +1415,11 @@ public class CallableStatementImpl implements CallableStatement {
  */
 	public void addBatch() throws SQLException {
 		try {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 			if(this.cstmts != null) {
 				for(int i = 0; i < this.cstmts.length; i++) {
 					this.cstmts[i].addBatch();
@@ -1379,7 +1427,12 @@ public class CallableStatementImpl implements CallableStatement {
 			} else {
 				this.cstmt.addBatch();
 			}
-			if(logger.isLoggable(Level.FINER)) { logger.finer(this.getQueryString()); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + this.getQueryString());
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(this.getQueryString());
+}
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(this.getQueryString()); }
 			throw e;
@@ -1697,12 +1750,32 @@ public class CallableStatementImpl implements CallableStatement {
 	public ResultSet executeQuery(String sql) throws SQLException {
 		try {
 			if(this.cstmts != null) {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 				ResultSet rs = new ResultSetImpl(this, this.cstmts[0].executeQuery(sql), true);
-				if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + sql);
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(sql);
+}
 				return rs;
 			} else {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 				ResultSet rs = new ResultSetImpl(this, this.cstmt.executeQuery(sql), false);
-				if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + sql);
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(sql);
+}
 				return rs;
 			}
 		} catch (SQLException e) {
@@ -1718,15 +1791,35 @@ public class CallableStatementImpl implements CallableStatement {
 	public int executeUpdate(String sql) throws SQLException {
 		try {
 			if(this.cstmts != null) {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 				int result = 0;
 				for(int i = 0; i < this.cstmts.length; i++) {
 					result = this.cstmts[i].executeUpdate(sql);
 				}
-				if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + sql);
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(sql);
+}
 				return result;
 			} else {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 				int result = this.cstmt.executeUpdate(sql);
-				if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + sql);
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(sql);
+}
 				return result;
 			}
 		} catch (SQLException e) {
@@ -1846,6 +1939,11 @@ public class CallableStatementImpl implements CallableStatement {
  */
 	public boolean execute(String sql) throws SQLException {
 		try {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 			boolean issucess = false;
 			if(this.cstmts != null) {
 				for(int i = 0; i < this.cstmts.length; i++) {
@@ -1854,7 +1952,12 @@ public class CallableStatementImpl implements CallableStatement {
 			} else {
 				issucess = this.cstmt.execute(sql);
 			}
-			if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + sql);
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(sql);
+}
 			return issucess;
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(sql); }
@@ -1938,6 +2041,11 @@ public class CallableStatementImpl implements CallableStatement {
  */
 	public void addBatch(String sql) throws SQLException {
 		try {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 			if(this.cstmts != null) {
 				for(int i = 0; i < this.cstmts.length; i++) {
 					this.cstmts[i].addBatch(sql);
@@ -1945,7 +2053,12 @@ public class CallableStatementImpl implements CallableStatement {
 			} else {
 				this.cstmt.addBatch(sql);
 			}
-			if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + sql);
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(sql);
+}
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(sql); }
 			throw e;
@@ -2001,6 +2114,11 @@ public class CallableStatementImpl implements CallableStatement {
  */
 	public int executeUpdate(String sql, int autoGeneratedKeys) throws SQLException {
 		try {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 			int result = 0;
 			if(this.cstmts != null) {
 				for(int i = 0; i < this.cstmts.length; i++) {
@@ -2009,7 +2127,12 @@ public class CallableStatementImpl implements CallableStatement {
 			} else {
 				result = this.cstmt.executeUpdate(sql, autoGeneratedKeys);
 			}
-			if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + sql);
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(sql);
+}
 			return result;
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(sql); }
@@ -2023,6 +2146,11 @@ public class CallableStatementImpl implements CallableStatement {
  */
 	public int executeUpdate(String sql, int[] columnIndexes) throws SQLException {
 		try {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 			int result = 0;
 			if(this.cstmts != null) {
 				for(int i = 0; i < this.cstmts.length; i++) {
@@ -2031,7 +2159,12 @@ public class CallableStatementImpl implements CallableStatement {
 			} else {
 				result = this.cstmt.executeUpdate(sql, columnIndexes);
 			}
-			if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + sql);
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(sql);
+}
 			return result;
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(sql); }
@@ -2045,6 +2178,11 @@ public class CallableStatementImpl implements CallableStatement {
  */
 	public int executeUpdate(String sql, String[] columnNames) throws SQLException {
 		try {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 			int result = 0;
 			if(this.cstmts != null) {
 				for(int i = 0; i < this.cstmts.length; i++) {
@@ -2053,7 +2191,12 @@ public class CallableStatementImpl implements CallableStatement {
 			} else {
 			result = this.cstmt.executeUpdate(sql, columnNames);
 			}
-			if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + sql);
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(sql);
+}
 			return result;
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(sql); }
@@ -2067,6 +2210,11 @@ public class CallableStatementImpl implements CallableStatement {
  */
 	public boolean execute(String sql, int autoGeneratedKeys) throws SQLException {
 		try {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 			boolean issucess = false;
 			if(this.cstmts != null) {
 				for(int i = 0; i < this.cstmts.length; i++) {
@@ -2075,7 +2223,12 @@ public class CallableStatementImpl implements CallableStatement {
 			} else {
 				issucess = this.cstmt.execute(sql, autoGeneratedKeys);
 			}
-			if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + sql);
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(sql);
+}
 			return issucess;
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(sql); }
@@ -2089,6 +2242,11 @@ public class CallableStatementImpl implements CallableStatement {
  */
 	public boolean execute(String sql, int[] columnIndexes) throws SQLException {
 		try {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 			boolean issucess = false;
 			if(this.cstmts != null) {
 				for(int i = 0; i < this.cstmts.length; i++) {
@@ -2097,7 +2255,12 @@ public class CallableStatementImpl implements CallableStatement {
 			} else {
 				issucess = this.cstmt.execute(sql, columnIndexes);
 			}
-			if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + sql);
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(sql);
+}
 			return issucess;
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(sql); }
@@ -2111,6 +2274,11 @@ public class CallableStatementImpl implements CallableStatement {
  */
 	public boolean execute(String sql, String[] columnNames) throws SQLException {
 		try {
+long before = 0;
+long after = 0;
+if(logger.isLoggable(Level.FINEST)) {
+	before = System.currentTimeMillis();
+}
 			boolean issucess = false;
 			if(this.cstmts != null) {
 				for(int i = 0; i < this.cstmts.length; i++) {
@@ -2119,7 +2287,12 @@ public class CallableStatementImpl implements CallableStatement {
 			} else {
 				issucess = this.cstmt.execute(sql, columnNames);
 			}
-			if(logger.isLoggable(Level.FINER)) { logger.finer(sql); }
+if(logger.isLoggable(Level.FINEST)) {
+	after = System.currentTimeMillis();
+	logger.finest(Long.toString(after - before) + "ms : " + sql);
+} else if(logger.isLoggable(Level.FINER)) {
+	logger.finer(sql);
+}
 			return issucess;
 		} catch (SQLException e) {
 			if(logger.isLoggable(Level.SEVERE)) { logger.severe(sql); }

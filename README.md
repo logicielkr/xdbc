@@ -250,4 +250,4 @@ END $$;
 try { Class.forName("org.h2.Driver");} catch(ClassNotFoundException e) {}
 ```
 
-> kr.xdbc.driver.GenericDriver 는 Java 7 을 위한 것과 Java 8 을 위한 것다는 사실에 주의하라.
+> kr.xdbc.driver.GenericDriver 는 Java 7 을 위한 것과 Java 8 을 위한 것이 각각 있다는 사실에 주의하라.
