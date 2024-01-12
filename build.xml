@@ -1,0 +1,4 @@
+<project name="xdbc" default="compile">
+	<import file="./build.xdbc.xml" as="xdbc" />
+</project>
+
