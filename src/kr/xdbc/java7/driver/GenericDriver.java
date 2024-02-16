@@ -164,7 +164,7 @@ public class GenericDriver implements java.sql.Driver {
 		return 0;
 	}
 	public int getMinorVersion() {
-		return 2;
+		return 5;
 	}
 }
 
