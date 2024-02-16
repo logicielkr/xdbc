@@ -63,7 +63,7 @@ con.close();
 ### 2.2. 로깅
 
 * 로깅에 사용된 API : java.util.logging.Logger
-* SQL 실행에 성공한 경우 : Level.FINE
+* SQL 실행에 성공한 경우 : Level.FINER (Level.FINEST 인 경우 실행시간도 로그에 남긴다)
 * SQL 실행에 실패한 경우 : Level.SEVERE
 * PreparedStatement와 CallableStatement 는 바인딩한 변수가 치환된 sql 을, Statement 는 일반 sql 을 로그에 남긴다.
 
@@ -72,11 +72,11 @@ con.close();
 $JAVA_HOME/jre/lib/logging.properties 파일을 약간 수정한다.
 
 ```properties
-.level= FINE
-java.util.logging.ConsoleHandler.level = FINE
+.level= FINEST
+java.util.logging.ConsoleHandler.level = FINEST
 ```
 
-Apache Ant의 java task 를 사용하는 경우 다음과 같은 내용도 추가한다.
+Apache Ant의 java task 를 사용하는 경우 다음과 같은 내용도 추가한다(그렇지 않았다면 너무 많은 로그가 출력될 것이다).
 
 ```properties
 java.level = WARNING
@@ -88,16 +88,16 @@ sun.level = WARNING
 
 ```properties
 handlers= java.util.logging.ConsoleHandler
-.level= FINE
+.level= FINEST
 
-java.util.logging.ConsoleHandler.level = FINE
+java.util.logging.ConsoleHandler.level = FINEST
 java.util.logging.ConsoleHandler.formatter = java.util.logging.SimpleFormatter
 
 java.level = WARNING
 javax.level = WARNING
 sun.level = WARNING
 
-kr.xdbc=FINE
+kr.xdbc=FINEST
 ```
 
 #### 2.2.3. java 명령어와 함께 사용
@@ -116,7 +116,7 @@ java -Djava.util.logging.config.file=logging.properties YourClassName
 
 #### 2.2.5. Apache Tomcat의 경우
 
-첫 번째 줄은 ALL 혹은 FINE 으로 변경한다.
+첫 번째 줄은 ALL 혹은 FINEST 으로 변경한다.
 
 ```properties
 java.util.logging.ConsoleHandler.level = ALL
@@ -125,7 +125,7 @@ java.util.logging.ConsoleHandler.level = ALL
 마지막 부분에 다음과 같은 내용을 추가한다.
 
 ```properties
-kr.xdbc.level = FINE
+kr.xdbc.level = FINEST
 ```
 
 ### 2.3. 2개 이상의 데이타베이스 복제본을 만드는 기능
