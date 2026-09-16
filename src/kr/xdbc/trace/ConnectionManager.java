@@ -67,6 +67,7 @@ public class ConnectionManager {
 				if(list[x] != null) {
 					StackTraceElement[] trace = (StackTraceElement[])this.map.get(list[x]);
 					if(trace != null) {
+						out.println("Index = " + x);
 						for(int i = 0; i < trace.length; i++) {
 							out.println(trace[i]);
 						}
@@ -86,6 +87,7 @@ public class ConnectionManager {
 				if(list[x] != null) {
 					StackTraceElement[] trace = (StackTraceElement[])this.map.get(list[x]);
 					if(trace != null) {
+						out.write("Index = " + x + "\n");
 						for(int i = 0; i < trace.length; i++) {
 							out.write(trace[i].toString());
 							out.write("\n");

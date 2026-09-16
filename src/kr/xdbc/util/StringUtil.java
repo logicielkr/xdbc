@@ -23,6 +23,9 @@ package kr.xdbc.util;
 import java.util.logging.Logger;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  * String Utilities
@@ -33,6 +36,7 @@ import java.util.HashMap;
  */
 
 public final class StringUtil {
+	private static Logger logger = Logger.getLogger(StringUtil.class.getName());
 /**
  * 문자열을 구분자로 잘라내서 배열로 반환한다.
  * StringTokenizer 로 잘라내서 배열로 만든다.
@@ -90,10 +94,21 @@ public final class StringUtil {
 				case '?':
 					prev = array[i];
 					if(!quote && !comment) {
-						if(index <= al.size()) {
+//						if(index <= al.size()) {
+						if(index < al.size()) {
 							sb.append(al.get(index));
 						} else {
 							sb.append(array[i]);
+if(logger.isLoggable(Level.SEVERE)) {
+	logger.severe("sql = " + sql);
+	if(al != null) {
+		logger.severe("al.size() = " + al.size());
+		logger.severe("index = " + index);
+		for(int x = 0; x < al.size(); x++) {
+			logger.severe("al.get(" + x + ")" + al.get(x));
+		}
+	}
+}
 						}
 						index++;
 					} else {
